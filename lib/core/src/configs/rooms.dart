@@ -2,24 +2,24 @@ import '../models/room.dart';
 
 // TODO get from backend.
 const Map<String, Room> eventRooms = {
-  '0': Room(
-    id: 0,
+  '32259': Room(
+    id: 32259,
     name: 'Hamilton',
     sort: 0,
   ),
-  '1': Room(
-    id: 1,
+  '32260': Room(
+    id: 32260,
     name: 'Shirley',
     sort: 1,
   ),
-  '2': Room(
-    id: 2,
+  '32261': Room(
+    id: 32261,
     name: 'Johnson',
     sort: 2,
   ),
-  '3': Room(
-    id: 2,
+  '35891': Room(
+    id: 35891,
     name: 'Bartik',
-    sort: 2,
+    sort: 3,
   ),
 };

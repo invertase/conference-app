@@ -11,13 +11,13 @@ _$_Speaker _$$_SpeakerFromJson(Map<String, dynamic> json) => _$_Speaker(
       firstName: json['firstName'] as String,
       lastName: json['lastName'] as String,
       fullName: json['fullName'] as String,
-      bio: json['bio'] as String,
-      tagLine: json['tagLine'] as String,
-      profilePicture: json['profilePicture'] as String,
-      isTopSpeaker: json['isTopSpeaker'] as bool,
-      links: json['links'] as List<dynamic>,
       sessions:
           (json['sessions'] as List<dynamic>).map((e) => e as int).toList(),
+      profilePicture: json['profilePicture'] as String?,
+      bio: json['bio'] as String?,
+      tagLine: json['tagLine'] as String?,
+      isTopSpeaker: json['isTopSpeaker'] as bool?,
+      links: json['links'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$$_SpeakerToJson(_$_Speaker instance) =>
@@ -26,10 +26,10 @@ Map<String, dynamic> _$$_SpeakerToJson(_$_Speaker instance) =>
       'firstName': instance.firstName,
       'lastName': instance.lastName,
       'fullName': instance.fullName,
+      'sessions': instance.sessions,
+      'profilePicture': instance.profilePicture,
       'bio': instance.bio,
       'tagLine': instance.tagLine,
-      'profilePicture': instance.profilePicture,
       'isTopSpeaker': instance.isTopSpeaker,
       'links': instance.links,
-      'sessions': instance.sessions,
     };

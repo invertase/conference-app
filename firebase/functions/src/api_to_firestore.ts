@@ -1,10 +1,24 @@
 import axios from 'axios';
 import * as admin from 'firebase-admin';
+import {
+  DocumentData,
+  FirestoreDataConverter,
+  Timestamp,
+} from 'firebase-admin/firestore';
 import * as functions from 'firebase-functions';
 import config from './config';
 import { Room } from './interfaces/room';
 import { Session } from './interfaces/session';
 import { Speaker } from './interfaces/speaker';
+
+const genericConverter = <T>(): FirestoreDataConverter<T> => ({
+  toFirestore(modelObject: T): DocumentData {
+    return modelObject as unknown as DocumentData;
+  },
+  fromFirestore(data: DocumentData): T {
+    return data as unknown as T;
+  },
+});
 
 /**
  * Get sessions and speakers from sessionize API.
@@ -31,10 +45,10 @@ const getSessionizeData = async (): Promise<any> => {
  */
 export const roomsToFirestore = functions
   .region(config.location)
-  .https.onCall(async () => {
+  .https.onRequest(async (_, response) => {
     const data = await getSessionizeData();
 
-    const roomsFirestore = await admin
+    const roomsFirestore = admin
       .firestore()
       .collection('rooms')
       .withConverter(genericConverter<Room>());
@@ -46,7 +60,7 @@ export const roomsToFirestore = functions
       functions.logger.info(`🎉 Room added successfully: ${room.name}`);
     });
 
-    return;
+    response.sendStatus(200);
   });
 
 /**
@@ -61,7 +75,7 @@ export const roomsToFirestore = functions
  */
 export const speakersToFirestore = functions
   .region(config.location)
-  .https.onCall(async () => {
+  .https.onRequest(async (_, response) => {
     const data = await getSessionizeData();
 
     const speakerFirestore = await admin
@@ -93,7 +107,7 @@ export const speakersToFirestore = functions
       );
     });
 
-    return;
+    response.sendStatus(200);
   });
 
 /**
@@ -108,7 +122,7 @@ export const speakersToFirestore = functions
  */
 export const sessionsToFirestore = functions
   .region(config.location)
-  .https.onCall(async () => {
+  .https.onRequest(async (_, response) => {
     const data = await getSessionizeData();
 
     const sessionFirestore = await admin
@@ -119,12 +133,12 @@ export const sessionsToFirestore = functions
     data['sessions'].map(async (session: any) => {
       if (session && session.startsAt) {
         const startsAt = new Date(session.startsAt);
-        session.startsAt = admin.firestore.Timestamp.fromDate(startsAt);
+        session.startsAt = Timestamp.fromDate(startsAt);
       }
 
       if (session && session.endsAt) {
         const endsAt = new Date(session.endsAt as string);
-        session.endsAt = admin.firestore.Timestamp.fromDate(endsAt);
+        session.endsAt = Timestamp.fromDate(endsAt);
       }
 
       await sessionFirestore.doc(session.id).set(session, { merge: true });
@@ -132,15 +146,5 @@ export const sessionsToFirestore = functions
       functions.logger.info(`🎉 Session added successfully: ${session.title}`);
     });
 
-    return;
+    response.sendStatus(200);
   });
-
-const genericConverter = <T>() => ({
-  toFirestore(data: Partial<T>) {
-    return data;
-  },
-  fromFirestore(snapshot: FirebaseFirestore.QueryDocumentSnapshot): T {
-    const data = snapshot.data();
-    return data as T;
-  },
-});

@@ -53,7 +53,7 @@ class AppTheme {
           titleMedium: GoogleFonts.poppins(
             color: AppColors.textColorHighEmphacy,
             fontSize: 16,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w700,
           ),
           titleLarge: GoogleFonts.poppins(
             color: AppColors.textColorHighEmphacy,

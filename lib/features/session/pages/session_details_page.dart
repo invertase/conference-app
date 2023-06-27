@@ -98,9 +98,9 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
             child: ListView(
               controller: PrimaryScrollController.of(context),
               padding: EdgeInsets.fromLTRB(
-                0,
+                10,
                 MediaQuery.of(context).padding.top,
-                0,
+                10,
                 MediaQuery.of(context).padding.bottom,
               ),
               children: [
@@ -148,11 +148,13 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
                           ref.watch(canRate(widget.session.id)),
                     ),
                   ),
-                SpeakerProfileImage(
-                  images: widget.speakers
-                      .map((speaker) => speaker.profilePicture)
-                      .toList(),
-                ),
+                if (widget.speakers.map((e) => e.profilePicture).isNotEmpty)
+                  SpeakerProfileImage(
+                    images: widget.speakers
+                        .where((s) => s.profilePicture != null)
+                        .map((speaker) => speaker.profilePicture!)
+                        .toList(),
+                  ),
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -266,21 +268,29 @@ class SpeakerProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (final image in images)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: CustomPaint(
-              painter: CustomSpeakerBorder(),
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: CachedNetworkImageProvider(image),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (final image in images)
+            Expanded(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  child: CustomPaint(
+                    painter: CustomSpeakerBorder(),
+                    child: CircleAvatar(
+                      maxRadius: 50,
+                      minRadius: 40,
+                      backgroundImage: CachedNetworkImageProvider(image),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -290,13 +300,13 @@ class CustomSpeakerBorder extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Rect drawingRect = Rect.fromCircle(
       center: Offset(size.width / 2, size.height / 2),
-      radius: size.width / 1.65,
+      radius: size.width / 1.8,
     );
 
     final Paint paint = Paint();
     paint.color = AppColors.primaryColorMain;
     paint.style = PaintingStyle.stroke;
-    paint.strokeWidth = 9;
+    paint.strokeWidth = 6;
     paint.strokeCap = StrokeCap.round;
 
     canvas.drawArc(

@@ -12,7 +12,7 @@ class ConnectLinkButton extends StatelessWidget {
     required this.url,
   });
 
-  final Links type;
+  final Link type;
   final String url;
 
   @override
@@ -28,10 +28,12 @@ class ConnectLinkButton extends StatelessWidget {
       child: Center(
         child: Padding(
           padding: const EdgeInsets.all(5.0),
-          child: FaIcon(
-            type.icon,
-            color: isDark ? Colors.white : Theme.of(context).primaryColor,
-          ),
+          child: type.iconString != null
+              ? Image.asset(type.iconString!, width: 20)
+              : FaIcon(
+                  type.icon,
+                  color: isDark ? Colors.white : Theme.of(context).primaryColor,
+                ),
         ),
       ),
     );

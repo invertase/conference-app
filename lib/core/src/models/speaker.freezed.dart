@@ -24,12 +24,12 @@ mixin _$Speaker {
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
-  String get bio => throw _privateConstructorUsedError;
-  String get tagLine => throw _privateConstructorUsedError;
-  String get profilePicture => throw _privateConstructorUsedError;
-  bool get isTopSpeaker => throw _privateConstructorUsedError;
-  List<dynamic> get links => throw _privateConstructorUsedError;
   List<int> get sessions => throw _privateConstructorUsedError;
+  String? get profilePicture => throw _privateConstructorUsedError;
+  String? get bio => throw _privateConstructorUsedError;
+  String? get tagLine => throw _privateConstructorUsedError;
+  bool? get isTopSpeaker => throw _privateConstructorUsedError;
+  List<dynamic>? get links => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,12 +46,12 @@ abstract class $SpeakerCopyWith<$Res> {
       String firstName,
       String lastName,
       String fullName,
-      String bio,
-      String tagLine,
-      String profilePicture,
-      bool isTopSpeaker,
-      List<dynamic> links,
-      List<int> sessions});
+      List<int> sessions,
+      String? profilePicture,
+      String? bio,
+      String? tagLine,
+      bool? isTopSpeaker,
+      List<dynamic>? links});
 }
 
 /// @nodoc
@@ -71,12 +71,12 @@ class _$SpeakerCopyWithImpl<$Res, $Val extends Speaker>
     Object? firstName = null,
     Object? lastName = null,
     Object? fullName = null,
-    Object? bio = null,
-    Object? tagLine = null,
-    Object? profilePicture = null,
-    Object? isTopSpeaker = null,
-    Object? links = null,
     Object? sessions = null,
+    Object? profilePicture = freezed,
+    Object? bio = freezed,
+    Object? tagLine = freezed,
+    Object? isTopSpeaker = freezed,
+    Object? links = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,30 +95,30 @@ class _$SpeakerCopyWithImpl<$Res, $Val extends Speaker>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      bio: null == bio
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      tagLine: null == tagLine
-          ? _value.tagLine
-          : tagLine // ignore: cast_nullable_to_non_nullable
-              as String,
-      profilePicture: null == profilePicture
-          ? _value.profilePicture
-          : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
-      isTopSpeaker: null == isTopSpeaker
-          ? _value.isTopSpeaker
-          : isTopSpeaker // ignore: cast_nullable_to_non_nullable
-              as bool,
-      links: null == links
-          ? _value.links
-          : links // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
       sessions: null == sessions
           ? _value.sessions
           : sessions // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      profilePicture: freezed == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tagLine: freezed == tagLine
+          ? _value.tagLine
+          : tagLine // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isTopSpeaker: freezed == isTopSpeaker
+          ? _value.isTopSpeaker
+          : isTopSpeaker // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      links: freezed == links
+          ? _value.links
+          : links // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ) as $Val);
   }
 }
@@ -135,12 +135,12 @@ abstract class _$$_SpeakerCopyWith<$Res> implements $SpeakerCopyWith<$Res> {
       String firstName,
       String lastName,
       String fullName,
-      String bio,
-      String tagLine,
-      String profilePicture,
-      bool isTopSpeaker,
-      List<dynamic> links,
-      List<int> sessions});
+      List<int> sessions,
+      String? profilePicture,
+      String? bio,
+      String? tagLine,
+      bool? isTopSpeaker,
+      List<dynamic>? links});
 }
 
 /// @nodoc
@@ -157,12 +157,12 @@ class __$$_SpeakerCopyWithImpl<$Res>
     Object? firstName = null,
     Object? lastName = null,
     Object? fullName = null,
-    Object? bio = null,
-    Object? tagLine = null,
-    Object? profilePicture = null,
-    Object? isTopSpeaker = null,
-    Object? links = null,
     Object? sessions = null,
+    Object? profilePicture = freezed,
+    Object? bio = freezed,
+    Object? tagLine = freezed,
+    Object? isTopSpeaker = freezed,
+    Object? links = freezed,
   }) {
     return _then(_$_Speaker(
       id: null == id
@@ -181,30 +181,30 @@ class __$$_SpeakerCopyWithImpl<$Res>
           ? _value.fullName
           : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      bio: null == bio
-          ? _value.bio
-          : bio // ignore: cast_nullable_to_non_nullable
-              as String,
-      tagLine: null == tagLine
-          ? _value.tagLine
-          : tagLine // ignore: cast_nullable_to_non_nullable
-              as String,
-      profilePicture: null == profilePicture
-          ? _value.profilePicture
-          : profilePicture // ignore: cast_nullable_to_non_nullable
-              as String,
-      isTopSpeaker: null == isTopSpeaker
-          ? _value.isTopSpeaker
-          : isTopSpeaker // ignore: cast_nullable_to_non_nullable
-              as bool,
-      links: null == links
-          ? _value._links
-          : links // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
       sessions: null == sessions
           ? _value._sessions
           : sessions // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      profilePicture: freezed == profilePicture
+          ? _value.profilePicture
+          : profilePicture // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bio: freezed == bio
+          ? _value.bio
+          : bio // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tagLine: freezed == tagLine
+          ? _value.tagLine
+          : tagLine // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isTopSpeaker: freezed == isTopSpeaker
+          ? _value.isTopSpeaker
+          : isTopSpeaker // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      links: freezed == links
+          ? _value._links
+          : links // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ));
   }
 }
@@ -218,14 +218,14 @@ class _$_Speaker implements _Speaker {
       required this.firstName,
       required this.lastName,
       required this.fullName,
-      required this.bio,
-      required this.tagLine,
-      required this.profilePicture,
-      required this.isTopSpeaker,
-      required final List<dynamic> links,
-      required final List<int> sessions})
-      : _links = links,
-        _sessions = sessions;
+      required final List<int> sessions,
+      this.profilePicture,
+      this.bio,
+      this.tagLine,
+      this.isTopSpeaker,
+      final List<dynamic>? links})
+      : _sessions = sessions,
+        _links = links;
 
   factory _$_Speaker.fromJson(Map<String, dynamic> json) =>
       _$$_SpeakerFromJson(json);
@@ -238,22 +238,6 @@ class _$_Speaker implements _Speaker {
   final String lastName;
   @override
   final String fullName;
-  @override
-  final String bio;
-  @override
-  final String tagLine;
-  @override
-  final String profilePicture;
-  @override
-  final bool isTopSpeaker;
-  final List<dynamic> _links;
-  @override
-  List<dynamic> get links {
-    if (_links is EqualUnmodifiableListView) return _links;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_links);
-  }
-
   final List<int> _sessions;
   @override
   List<int> get sessions {
@@ -263,8 +247,26 @@ class _$_Speaker implements _Speaker {
   }
 
   @override
+  final String? profilePicture;
+  @override
+  final String? bio;
+  @override
+  final String? tagLine;
+  @override
+  final bool? isTopSpeaker;
+  final List<dynamic>? _links;
+  @override
+  List<dynamic>? get links {
+    final value = _links;
+    if (value == null) return null;
+    if (_links is EqualUnmodifiableListView) return _links;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
   String toString() {
-    return 'Speaker(id: $id, firstName: $firstName, lastName: $lastName, fullName: $fullName, bio: $bio, tagLine: $tagLine, profilePicture: $profilePicture, isTopSpeaker: $isTopSpeaker, links: $links, sessions: $sessions)';
+    return 'Speaker(id: $id, firstName: $firstName, lastName: $lastName, fullName: $fullName, sessions: $sessions, profilePicture: $profilePicture, bio: $bio, tagLine: $tagLine, isTopSpeaker: $isTopSpeaker, links: $links)';
   }
 
   @override
@@ -279,14 +281,14 @@ class _$_Speaker implements _Speaker {
                 other.lastName == lastName) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
-            (identical(other.bio, bio) || other.bio == bio) &&
-            (identical(other.tagLine, tagLine) || other.tagLine == tagLine) &&
+            const DeepCollectionEquality().equals(other._sessions, _sessions) &&
             (identical(other.profilePicture, profilePicture) ||
                 other.profilePicture == profilePicture) &&
+            (identical(other.bio, bio) || other.bio == bio) &&
+            (identical(other.tagLine, tagLine) || other.tagLine == tagLine) &&
             (identical(other.isTopSpeaker, isTopSpeaker) ||
                 other.isTopSpeaker == isTopSpeaker) &&
-            const DeepCollectionEquality().equals(other._links, _links) &&
-            const DeepCollectionEquality().equals(other._sessions, _sessions));
+            const DeepCollectionEquality().equals(other._links, _links));
   }
 
   @JsonKey(ignore: true)
@@ -297,12 +299,12 @@ class _$_Speaker implements _Speaker {
       firstName,
       lastName,
       fullName,
+      const DeepCollectionEquality().hash(_sessions),
+      profilePicture,
       bio,
       tagLine,
-      profilePicture,
       isTopSpeaker,
-      const DeepCollectionEquality().hash(_links),
-      const DeepCollectionEquality().hash(_sessions));
+      const DeepCollectionEquality().hash(_links));
 
   @JsonKey(ignore: true)
   @override
@@ -324,12 +326,12 @@ abstract class _Speaker implements Speaker {
       required final String firstName,
       required final String lastName,
       required final String fullName,
-      required final String bio,
-      required final String tagLine,
-      required final String profilePicture,
-      required final bool isTopSpeaker,
-      required final List<dynamic> links,
-      required final List<int> sessions}) = _$_Speaker;
+      required final List<int> sessions,
+      final String? profilePicture,
+      final String? bio,
+      final String? tagLine,
+      final bool? isTopSpeaker,
+      final List<dynamic>? links}) = _$_Speaker;
 
   factory _Speaker.fromJson(Map<String, dynamic> json) = _$_Speaker.fromJson;
 
@@ -342,17 +344,17 @@ abstract class _Speaker implements Speaker {
   @override
   String get fullName;
   @override
-  String get bio;
-  @override
-  String get tagLine;
-  @override
-  String get profilePicture;
-  @override
-  bool get isTopSpeaker;
-  @override
-  List<dynamic> get links;
-  @override
   List<int> get sessions;
+  @override
+  String? get profilePicture;
+  @override
+  String? get bio;
+  @override
+  String? get tagLine;
+  @override
+  bool? get isTopSpeaker;
+  @override
+  List<dynamic>? get links;
   @override
   @JsonKey(ignore: true)
   _$$_SpeakerCopyWith<_$_Speaker> get copyWith =>

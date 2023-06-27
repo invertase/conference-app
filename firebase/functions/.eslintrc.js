@@ -53,5 +53,11 @@ module.exports = {
       },
     ],
     'operator-linebreak': 'off',
+    'import/no-unresolved': [
+      'error',
+      {
+        ignore: ['^firebase-admin/.+'],
+      },
+    ],
   },
 };

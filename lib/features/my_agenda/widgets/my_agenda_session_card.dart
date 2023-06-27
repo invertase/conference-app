@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:conference_app/core/core.dart';
 import 'package:intl/intl.dart';
 
 import 'session_status_badge.dart';
@@ -68,22 +68,28 @@ class MyAgendaSessionCard extends StatelessWidget {
             ),
             Align(
               alignment: AlignmentDirectional.bottomEnd,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
+              child: Stack(
                 children: [
                   for (final s in speakers)
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 5,
-                        vertical: 10,
+                    Positioned.directional(
+                      textDirection: Directionality.of(context),
+                      end: speakers.indexOf(s) * (15.0),
+                      bottom: 0,
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 5,
+                          vertical: 10,
+                        ),
+                        constraints: const BoxConstraints(
+                          maxWidth: 40,
+                          maxHeight: 40,
+                        ),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        decoration: const BoxDecoration(shape: BoxShape.circle),
+                        child: s.profilePicture == null
+                            ? const SizedBox()
+                            : CachedNetworkImage(imageUrl: s.profilePicture!),
                       ),
-                      constraints: const BoxConstraints(
-                        maxWidth: 40,
-                        maxHeight: 40,
-                      ),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      decoration: const BoxDecoration(shape: BoxShape.circle),
-                      child: CachedNetworkImage(imageUrl: s.profilePicture),
                     )
                 ],
               ),

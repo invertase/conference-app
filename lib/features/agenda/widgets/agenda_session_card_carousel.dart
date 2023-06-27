@@ -1,6 +1,5 @@
 import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'agenda_session_speaker.dart';
@@ -30,7 +29,6 @@ class AgendaSessionCardCarousel extends StatelessWidget {
             child: Text(
               sessionNumberFormatter.format(index),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontFamily: GoogleFonts.caesarDressing().fontFamily,
                     height: 1.1,
                     fontSize: 100,
                   ),
@@ -43,7 +41,6 @@ class AgendaSessionCardCarousel extends StatelessWidget {
             style: speakers.isEmpty
                 ? Theme.of(context).textTheme.titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
-                      fontFamily: GoogleFonts.caesarDressing().fontFamily,
                       color: Theme.of(context).brightness == Brightness.dark
                           ? Colors.white
                           : AppColors.primaryColorMain,
@@ -60,7 +57,7 @@ class AgendaSessionCardCarousel extends StatelessWidget {
                     Expanded(
                       child: AgendaSessionSpeaker(
                         speakerName: s.fullName,
-                        speakerJob: s.tagLine,
+                        speakerJob: s.tagLine ?? '',
                         speakerImageUrl: s.profilePicture,
                       ),
                     ),

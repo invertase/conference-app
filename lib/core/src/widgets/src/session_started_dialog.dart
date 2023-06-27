@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SessionStartedDialog extends StatelessWidget {
   const SessionStartedDialog({
@@ -47,10 +46,6 @@ class SessionStartedDialog extends StatelessWidget {
                     ),
                     Text(
                       'The event:',
-                      style: GoogleFonts.caesarDressing(
-                        color: Colors.grey,
-                        fontSize: 18,
-                      ),
                     ),
                     AppAdaptiveTextButton(
                       onPressed: () {
@@ -95,10 +90,6 @@ class SessionStartedDialog extends StatelessWidget {
                     ),
                     Text(
                       '${speakers.map((e) => e.fullName).join(' & ')} ${speakers.length > 1 ? 'are' : 'is'} speaking...',
-                      style: GoogleFonts.caesarDressing(
-                        color: Colors.grey,
-                        fontSize: 16,
-                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 60),
@@ -184,11 +175,12 @@ class _AnimatedSpeakerTalkingAvatarState
               _buildContainer(width * _controller.value),
               _buildContainer((width + 20) * _controller.value),
               _buildContainer((width + 30) * _controller.value),
-              CircleAvatar(
-                radius: 50,
-                backgroundImage:
-                    CachedNetworkImageProvider(widget.speaker.profilePicture),
-              ),
+              if (widget.speaker.profilePicture != null)
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: CachedNetworkImageProvider(
+                      widget.speaker.profilePicture!),
+                ),
             ],
           );
         },

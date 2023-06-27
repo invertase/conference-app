@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:conference_app/core/core.dart';
+import 'package:flutter/material.dart';
 
-import '../../../core/src/models/tab_item.dart';
 import '../../agenda/pages/agenda_page.dart';
 import '../../my_agenda/pages/my_agenda_page.dart';
 import '../../speakers/pages/speakers_page.dart';

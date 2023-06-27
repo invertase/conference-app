@@ -14,11 +14,7 @@ final speakersProvider = StreamProvider<Map<String, Speaker>>((ref) {
 });
 
 final sessionSpeakers = Provider.family<List<Speaker>, Session>((ref, session) {
-  return ref
-          .watch(speakersProvider)
-          .value
-          ?.values
-          .where((s) => session.speakers.contains(s.id))
-          .toList() ??
-      [];
+  return (ref.watch(speakersProvider).value?.values ?? [])
+      .where((s) => session.speakers.contains(s.id))
+      .toList();
 });

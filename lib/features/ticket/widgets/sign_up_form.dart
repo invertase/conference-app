@@ -1,7 +1,6 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:conference_app/core/core.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class TicketSignUpForm extends StatelessWidget {
   const TicketSignUpForm({
@@ -25,11 +24,8 @@ class TicketSignUpForm extends StatelessWidget {
             width: 50,
           ),
           const SizedBox(height: 20),
-          Text(
+          const Text(
             AppStrings.eventAndYear,
-            style: GoogleFonts.caesarDressing(
-              color: Theme.of(context).primaryColorLight,
-            ),
           ),
           const SizedBox(height: 10),
           const FittedBox(

@@ -50,7 +50,7 @@ class SessionAddedBanner extends ConsumerWidget {
               onPressed: onDelete,
               child: Icon(
                 Icons.delete_rounded,
-                color: Theme.of(context).colorScheme.inversePrimary,
+                color: AppColors.secondaryColorSecondary.withOpacity(0.9),
               ),
             )
           ],

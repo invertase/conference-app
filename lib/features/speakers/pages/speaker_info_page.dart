@@ -1,6 +1,6 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:conference_app/core/core.dart';
 import 'package:intl/intl.dart';
 
 class SpeakerInfoPage extends ConsumerStatefulWidget {
@@ -54,7 +54,7 @@ class _SpeakerInfoPageState extends ConsumerState<SpeakerInfoPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: Text(
-                      widget.speaker.tagLine,
+                      widget.speaker.tagLine ?? '',
                       style: Theme.of(context).textTheme.bodyMedium,
                       textAlign: TextAlign.center,
                     ),
@@ -68,7 +68,7 @@ class _SpeakerInfoPageState extends ConsumerState<SpeakerInfoPage> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        widget.speaker.bio,
+                        widget.speaker.bio ?? '',
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ],
@@ -96,16 +96,22 @@ class _SpeakerInfoPageState extends ConsumerState<SpeakerInfoPage> {
                         style: titleStyle,
                       ),
                       const SizedBox(height: 20),
-                      Row(
+                      Wrap(
+                        alignment: WrapAlignment.start,
+                        direction: Axis.horizontal,
+                        runSpacing: 10,
                         children: [
-                          for (final s in widget.speaker.links)
-                            Padding(
-                              padding:
-                                  const EdgeInsetsDirectional.only(end: 10),
-                              child: ConnectLinkButton(
-                                type: Links.values.byName(
-                                    (s['linkType'] as String).toLowerCase()),
-                                url: s['url'],
+                          for (final s in (widget.speaker.links ?? []))
+                            SizedBox(
+                              width: 70,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsetsDirectional.only(end: 10),
+                                child: ConnectLinkButton(
+                                  type: Link.values.byName(
+                                      (s['linkType'] as String).toLowerCase()),
+                                  url: s['url'],
+                                ),
                               ),
                             ),
                         ],

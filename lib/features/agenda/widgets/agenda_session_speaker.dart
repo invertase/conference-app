@@ -7,12 +7,12 @@ class AgendaSessionSpeaker extends StatelessWidget {
     super.key,
     required this.speakerName,
     required this.speakerJob,
-    required this.speakerImageUrl,
+    this.speakerImageUrl,
   });
 
   final String speakerName;
   final String speakerJob;
-  final String speakerImageUrl;
+  final String? speakerImageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,20 @@ class AgendaSessionSpeaker extends StatelessWidget {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: const BoxDecoration(shape: BoxShape.circle),
             child: CircleAvatar(
-              minRadius: 18,
-              maxRadius: 30,
-              child: CachedNetworkImage(imageUrl: speakerImageUrl),
+              radius: 30,
+              child: speakerImageUrl == null
+                  ? const SizedBox()
+                  : CachedNetworkImage(
+                      imageUrl: speakerImageUrl!,
+                      placeholder: (context, url) {
+                        return const Center(
+                          child: SizedBox(
+                            width: 30,
+                            height: 30,
+                          ),
+                        );
+                      },
+                    ),
             ),
           ),
           const SizedBox(width: 10),
