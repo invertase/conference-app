@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
 import '../../../core/src/models/tab_item.dart';
 import '../../agenda/pages/agenda_page.dart';

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
 final authService = Provider((ref) => AuthService(FirebaseAuth.instance));
 

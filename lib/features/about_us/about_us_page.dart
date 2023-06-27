@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutUsPage extends StatelessWidget {

@@ -2,14 +2,14 @@ import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
-import 'package:flutter_vikings/features/session/widgets/rate_dialog.dart';
 import 'package:intl/intl.dart';
 
 import '../../ticket/providers/ticket_provider.dart';
 import '../providers/session_rate_provider.dart';
+import '../widgets/rate_dialog.dart';
 import '../widgets/session_added_banner.dart';
 import '../widgets/session_live_banner.dart';
 import '../widgets/session_rate_banner.dart';

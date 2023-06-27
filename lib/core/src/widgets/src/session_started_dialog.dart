@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_vikings/core/core.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SessionStartedDialog extends StatelessWidget {

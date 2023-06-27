@@ -1,4 +1,4 @@
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
 import '../../../core/src/models/tab_item.dart';
 import '../models/drawer_item.dart';

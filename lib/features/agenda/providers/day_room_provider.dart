@@ -1,5 +1,5 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
 
 extension DateOnlyCompare on DateTime {
   /// Return if 2 dates are the same day.

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
+import 'package:conference_app/core/core.dart' as core;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart' as core;
 
 import '../widgets/notification_item.dart';
 

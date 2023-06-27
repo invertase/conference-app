@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
 import '../widgets/meet_speaker_card.dart';
 

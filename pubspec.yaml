@@ -1,11 +1,11 @@
-name: flutter_vikings
-description: A new Flutter project.
-publish_to: 'none'
-version: 1.2.1+12101
+name: conference_app
+description: A conference app built with Flutter.
+publish_to: "none"
+version: 0.0.1+00100
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 
 dependencies:
   cached_network_image: ^3.2.1
@@ -55,13 +55,13 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: 'assets/icons/launcherIcon_android.png'
-  image_path_ios: 'assets/icons/launcherIcon_ios.png'
-  adaptive_icon_background: '#ffffff'
+  image_path: "assets/icons/launcherIcon_android.png"
+  image_path_ios: "assets/icons/launcherIcon_ios.png"
+  adaptive_icon_background: "#ffffff"
 
 flutter_native_splash:
-  color: '#FFFFFF'
-  color_dark: '#02192C'
+  color: "#FFFFFF"
+  color_dark: "#02192C"
   image: assets/images/logoWithText.png
 
 flutter:

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
 import '../../ticket/providers/ticket_provider.dart';
 

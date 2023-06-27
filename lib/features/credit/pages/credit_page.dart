@@ -1,7 +1,7 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vikings/core/core.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 Map<String, String> devs = {

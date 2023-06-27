@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
 class MainBottomNavigatiopnBarIcon extends StatelessWidget {
   const MainBottomNavigatiopnBarIcon({

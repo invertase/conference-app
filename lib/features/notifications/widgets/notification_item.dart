@@ -1,5 +1,5 @@
+import 'package:conference_app/core/core.dart' as core;
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart' as core;
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem({super.key, required this.notification});

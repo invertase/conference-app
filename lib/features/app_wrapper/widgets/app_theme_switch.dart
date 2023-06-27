@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
 class AppThemeSwitch extends ConsumerStatefulWidget {
   const AppThemeSwitch({Key? key}) : super(key: key);

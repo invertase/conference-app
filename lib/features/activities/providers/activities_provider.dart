@@ -2,7 +2,7 @@ import 'dart:convert' show utf8, json;
 
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:http/http.dart';
 
 final activitiesProvider =
