@@ -9,12 +9,7 @@ Map<String, String> devs = {
   'Majid Hajian': 'https://twitter.com/mhadaily'
 };
 
-Map<String, String?> contributers = {
-  'Guillaume Bernos': 'https://twitter.com/BeGuillaume',
-  'Ahmad Alabd': null,
-  'Beyza Mersinli': null,
-  'Çağla': null
-};
+Map<String, String?> contributers = {};
 
 class CreditPage extends StatelessWidget {
   const CreditPage({Key? key}) : super(key: key);
@@ -59,7 +54,7 @@ class CreditPage extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                       children: [
                         const TextSpan(
-                          text: 'This project is sponsored by ',
+                          text: 'This project is a product of ',
                         ),
                         TextSpan(
                           text: 'Invertase',
@@ -71,9 +66,6 @@ class CreditPage extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).primaryColorLight),
-                        ),
-                        const TextSpan(
-                          text: ' for FlutterVikings.',
                         ),
                       ],
                     ),
@@ -131,8 +123,9 @@ class CreditPage extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   const SizedBox(height: 20),
-                  Text('Contributers: ',
-                      style: Theme.of(context).textTheme.titleLarge),
+                  if (contributers.isNotEmpty)
+                    Text('Contributers: ',
+                        style: Theme.of(context).textTheme.titleLarge),
                   ...contributers.keys
                       .map(
                         (e) => GestureDetector(

@@ -12,23 +12,10 @@ List<DrawerItem> drawerItems = [
     tabItemId: TabItemId.myAgenda,
   ),
   const DrawerItem(
-    id: DrawerItemId.sponsors,
-    title: 'Sponsors',
-    icon: AppIcons.sponsors,
-    route: 'route',
-    tabItemId: TabItemId.sponsors,
-  ),
-  const DrawerItem(
     id: DrawerItemId.codeOfConduct,
     title: 'Code of conduct',
     icon: AppIcons.codeOfConduct,
     route: RouteNames.codeOfConduct,
-  ),
-  const DrawerItem(
-    id: DrawerItemId.games,
-    title: 'Games',
-    icon: AppIcons.games,
-    route: 'games',
   ),
   const DrawerItem(
     id: DrawerItemId.aboutUs,

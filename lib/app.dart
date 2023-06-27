@@ -20,10 +20,6 @@ class _ConferenceAppState extends ConsumerState<ConferenceApp> {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       Future.wait<void>([
         precacheImage(
-          Image.asset(AppImages.logo).image,
-          context,
-        ),
-        precacheImage(
           Image.asset('assets/images/bottom_navigation_bar_blur.png').image,
           context,
         ),

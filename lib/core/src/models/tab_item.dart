@@ -4,8 +4,6 @@ import 'package:flutter/widgets.dart';
 enum TabItemId {
   agenda,
   myAgenda,
-  ticket,
-  sponsors,
   speakers,
 }
 

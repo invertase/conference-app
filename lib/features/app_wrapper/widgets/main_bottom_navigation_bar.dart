@@ -70,17 +70,12 @@ class MainBottomNavigationBar extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     for (final tab in tabs)
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: tab.id == TabItemId.ticket ? 25 : 0,
-                        ),
-                        child: MainBottomNavigatiopnBarIcon(
-                          onPressed: () => onTabSelected?.call(tab.id.index),
-                          icon: tab.icon,
-                          color: tab.iconColor,
-                          activeColor: tab.activeIconColor,
-                          active: selectedTab == tabs.indexOf(tab),
-                        ),
+                      MainBottomNavigatiopnBarIcon(
+                        onPressed: () => onTabSelected?.call(tab.id.index),
+                        icon: tab.icon,
+                        color: tab.iconColor,
+                        activeColor: tab.activeIconColor,
+                        active: selectedTab == tabs.indexOf(tab),
                       )
                   ],
                 ),

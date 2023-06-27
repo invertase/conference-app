@@ -67,8 +67,8 @@ class _AgendaRoomPickerState extends State<AgendaRoomPicker> {
                                   : Theme.of(context)
                                       .colorScheme
                                       .secondary
-                                      .withOpacity(0.2)
-                              : Colors.white.withOpacity(0.02),
+                                      .withOpacity(0.3)
+                              : Colors.white.withOpacity(0.04),
                           border: Border.all(
                             color:
                                 Theme.of(context).brightness == Brightness.light
@@ -96,16 +96,13 @@ class _AgendaRoomPickerState extends State<AgendaRoomPicker> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SvgPicture.asset(room.image!),
+                                if (room.image != null)
+                                  SvgPicture.asset(room.image!),
                                 FittedBox(
                                   child: Text(
                                     room.name,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(
-                                          color: Theme.of(context).primaryColor,
-                                        ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
                                   ),
                                 ),
                               ],

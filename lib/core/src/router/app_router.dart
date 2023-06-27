@@ -10,7 +10,6 @@ import '../configs/local_storage_keys.dart';
 import '../models/activity.dart';
 import '../models/session_details.dart';
 import '../models/speaker.dart';
-import '../models/sponsor.dart';
 import '../models/tab_item.dart';
 import '../providers/local_storage_provider.dart';
 import '../providers/sessions_provider.dart';
@@ -105,13 +104,6 @@ class AppRouter {
                 ),
               ),
               GoRoute(
-                path: RoutePaths.sponsor,
-                name: RouteNames.sponsor,
-                builder: (context, state) => SponsorInfoPage(
-                  sponsor: state.extra as Sponsor,
-                ),
-              ),
-              GoRoute(
                 path: RoutePaths.notifications,
                 name: RouteNames.notifications,
                 builder: (context, state) => const NotificationsPage(),
@@ -120,11 +112,6 @@ class AppRouter {
                 path: RoutePaths.codeOfConduct,
                 name: RouteNames.codeOfConduct,
                 builder: (context, state) => const CodeOfConductPage(),
-              ),
-              GoRoute(
-                path: RoutePaths.games,
-                name: RouteNames.games,
-                builder: (context, state) => const GamePage(),
               ),
               GoRoute(
                 path: RoutePaths.credit,
