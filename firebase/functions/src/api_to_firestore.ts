@@ -78,12 +78,14 @@ export const speakersToFirestore = functions
   .https.onRequest(async (_, response) => {
     const data = await getSessionizeData();
 
-    const speakerFirestore = await admin
+    const speakerFirestore = admin
       .firestore()
       .collection('speakers')
       .withConverter(genericConverter<Speaker>());
 
-    data['speakers'].map(async (speaker: Speaker) => {
+    const batch = admin.firestore().batch();
+
+    for (const speaker of data['speakers']) {
       if (
         speaker.questionAnswers &&
         speaker.questionAnswers.length > 0 &&
@@ -101,11 +103,13 @@ export const speakersToFirestore = functions
       }
 
       const speakerRef = speakerFirestore.doc(speaker.id);
-      await speakerRef.set(speaker);
+      batch.set(speakerRef, speaker);
       functions.logger.info(
         `🎉 Speaker added successfully: ${speaker.fullName}`
       );
-    });
+    }
+
+    await batch.commit();
 
     response.sendStatus(200);
   });
@@ -125,12 +129,14 @@ export const sessionsToFirestore = functions
   .https.onRequest(async (_, response) => {
     const data = await getSessionizeData();
 
-    const sessionFirestore = await admin
+    const sessionFirestore = admin
       .firestore()
       .collection('sessions')
       .withConverter(genericConverter<Session>());
 
-    data['sessions'].map(async (session: any) => {
+    const batch = admin.firestore().batch();
+
+    for (const session of data['sessions']) {
       if (session && session.startsAt) {
         const startsAt = new Date(session.startsAt);
         session.startsAt = Timestamp.fromDate(startsAt);
@@ -141,10 +147,11 @@ export const sessionsToFirestore = functions
         session.endsAt = Timestamp.fromDate(endsAt);
       }
 
-      await sessionFirestore.doc(session.id).set(session, { merge: true });
-
+      batch.set(sessionFirestore.doc(session.id), session);
       functions.logger.info(`🎉 Session added successfully: ${session.title}`);
-    });
+    }
+
+    await batch.commit();
 
     response.sendStatus(200);
   });
