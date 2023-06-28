@@ -61,8 +61,8 @@ flutter_icons:
 
 flutter_native_splash:
   color: "#FFFFFF"
-  color_dark: "#02192C"
-  image: assets/images/logoWithText.png
+  color_dark: "#00063B"
+  image: assets/icons/dash.png
 
 flutter:
   uses-material-design: true
@@ -70,4 +70,3 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/images/games/dashing_vikings/

@@ -12,7 +12,7 @@ class AppColors {
   static const Color textColorLowEmphacy = Color(0xffBABABA);
 
   static const Color backgroundWhite = Color(0xffFFFFFF);
-  static const Color backgroundDark = Color.fromARGB(255, 0, 6, 59);
+  static const Color backgroundDark = Color(0xff00063B);
   static const Color backgroundCard = Color(0xff4A4A4F);
   static Color backgroundDarkCard = const Color(0xff07C6F9).withOpacity(0.04);
 
