@@ -62,7 +62,8 @@ flutter_icons:
 flutter_native_splash:
   color: "#FFFFFF"
   color_dark: "#00063B"
-  image: assets/icons/dash.png
+  image: assets/images/splash_image_light.png
+  image_dark: assets/images/splash_image_dark.png
 
 flutter:
   uses-material-design: true
