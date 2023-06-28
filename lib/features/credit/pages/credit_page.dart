@@ -94,35 +94,6 @@ class CreditPage extends StatelessWidget {
                       )
                       .toList(),
                   const SizedBox(height: 20),
-                  RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      children: [
-                        const TextSpan(
-                          text: 'Special thanks to  ',
-                        ),
-                        TextSpan(
-                          text: 'Codemagic ',
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => launchUrlString(
-                                  'https://codemagic.io',
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColorLight),
-                        ),
-                        const TextSpan(
-                          text: ' for sponsoring unlimited build minutes.',
-                        ),
-                      ],
-                    ),
-                  ),
-                  Text(
-                    '',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const SizedBox(height: 20),
                   if (contributers.isNotEmpty)
                     Text('Contributers: ',
                         style: Theme.of(context).textTheme.titleLarge),

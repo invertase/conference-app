@@ -149,11 +149,10 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
                     ),
                   ),
                 if (widget.speakers.map((e) => e.profilePicture).isNotEmpty)
-                  SpeakerProfileImage(
-                    images: widget.speakers
-                        .where((s) => s.profilePicture != null)
-                        .map((speaker) => speaker.profilePicture!)
-                        .toList(),
+                  GestureDetector(
+                    child: SpeakerProfileImage(
+                      speakers: widget.speakers,
+                    ),
                   ),
                 const SizedBox(height: 30),
                 Padding(
@@ -261,10 +260,10 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
 class SpeakerProfileImage extends StatelessWidget {
   const SpeakerProfileImage({
     Key? key,
-    required this.images,
+    required this.speakers,
   }) : super(key: key);
 
-  final List<String> images;
+  final List<Speaker> speakers;
 
   @override
   Widget build(BuildContext context) {
@@ -273,17 +272,23 @@ class SpeakerProfileImage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          for (final image in images)
+          for (final s in speakers)
             Expanded(
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 0),
-                  child: CustomPaint(
-                    painter: CustomSpeakerBorder(),
-                    child: CircleAvatar(
-                      maxRadius: 50,
-                      minRadius: 40,
-                      backgroundImage: CachedNetworkImageProvider(image),
+              child: GestureDetector(
+                onTap: () => context.pushSpeaker(s),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: CustomPaint(
+                      painter: CustomSpeakerBorder(),
+                      child: CircleAvatar(
+                          maxRadius: 50,
+                          minRadius: 40,
+                          foregroundImage: s.profilePicture == null
+                              ? null
+                              : CachedNetworkImageProvider(s.profilePicture!),
+                          backgroundImage: const AssetImage(
+                              'assets/images/profile_placeholder.png')),
                     ),
                   ),
                 ),

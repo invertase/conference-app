@@ -111,7 +111,7 @@ class CodeOfConductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const WebViewWithLoadingIndicator(
       title: 'Code of Conduct',
-      url: 'https://fluttervikings.com/code-of-conduct/',
+      url: 'https://fluttercon.dev/code-of-conduct/',
     );
   }
 }

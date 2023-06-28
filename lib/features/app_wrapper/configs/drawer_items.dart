@@ -17,12 +17,6 @@ List<DrawerItem> drawerItems = [
     route: RouteNames.codeOfConduct,
   ),
   const DrawerItem(
-    id: DrawerItemId.aboutUs,
-    title: 'About us',
-    icon: AppIcons.aboutUs,
-    route: RouteNames.aboutUs,
-  ),
-  const DrawerItem(
     id: DrawerItemId.credit,
     title: 'Credit',
     icon: AppIcons.sendFeedback,

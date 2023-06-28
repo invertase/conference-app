@@ -66,12 +66,12 @@ android {
     }
 
    signingConfigs {
-        debug {
-           keyAlias debugkeystoreProperties['keyAlias']
-           keyPassword debugkeystoreProperties['keyPassword']
-           storeFile debugkeystoreProperties['storeFile'] ? file(debugkeystoreProperties['storeFile']) : null
-           storePassword debugkeystoreProperties['storePassword']
-       }
+    //     debug {
+    //        keyAlias debugkeystoreProperties['keyAlias']
+    //        keyPassword debugkeystoreProperties['keyPassword']
+    //        storeFile debugkeystoreProperties['storeFile'] ? file(debugkeystoreProperties['storeFile']) : null
+    //        storePassword debugkeystoreProperties['storePassword']
+    //    }
        release {
             if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                 storeFile file(System.getenv()["CM_KEYSTORE_PATH"])

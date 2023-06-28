@@ -1,10 +1,10 @@
 import 'dart:math';
 
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:conference_app/core/core.dart';
 
 class OnboardingPage extends ConsumerStatefulWidget {
   const OnboardingPage({super.key});
@@ -133,15 +133,15 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/logoWithText.png',
-                      width: MediaQuery.of(context).size.width * .35,
+                    SvgPicture.asset(
+                      'assets/images/logo.svg',
+                      width: MediaQuery.of(context).size.width * .5,
                     ),
                     const SizedBox(height: 40),
-                    const Text('The Biggest Nordic Flutter Conference!'),
+                    const Text('The Biggest Flutter Conference!'),
                     const SizedBox(height: 20),
                     Text(
-                      '31st AUG - 1st SEP, 2022',
+                      '5 - 7 July, 2023',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: AppColors.textColorMediumEmphacy,
                           ),
@@ -170,6 +170,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                                 alignment: Alignment.topLeft,
                                 child: SvgPicture.asset(
                                   'assets/images/startButtonSubtract.svg',
+                                  color: AppColors.primaryColorMain,
                                 ),
                               ),
                             ),
@@ -181,6 +182,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                                   angle: 90 * pi / 180,
                                   child: SvgPicture.asset(
                                     'assets/images/startButtonSubtract.svg',
+                                    color: AppColors.primaryColorMain,
                                   ),
                                 ),
                               ),
@@ -193,6 +195,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                                   angle: 90 * pi / 90,
                                   child: SvgPicture.asset(
                                     'assets/images/startButtonSubtract.svg',
+                                    color: AppColors.primaryColorMain,
                                   ),
                                 ),
                               ),
@@ -205,6 +208,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                                   angle: -90 * pi / 180,
                                   child: SvgPicture.asset(
                                     'assets/images/startButtonSubtract.svg',
+                                    color: AppColors.primaryColorMain,
                                   ),
                                 ),
                               ),
