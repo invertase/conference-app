@@ -72,16 +72,16 @@ class _AgendaPageState extends ConsumerState<AgendaPage>
             ),
           ),
         ),
-        SliverToBoxAdapter(
-          child: AgendaHeader(
-            view: view,
-            onViewChanged: (value) {
-              setState(() {
-                view = value;
-              });
-            },
-          ),
-        ),
+        // SliverToBoxAdapter(
+        //   child: AgendaHeader(
+        //     view: view,
+        //     onViewChanged: (value) {
+        //       setState(() {
+        //         view = value;
+        //       });
+        //     },
+        //   ),
+        // ),
         SliverToBoxAdapter(
           child: Visibility(
             maintainAnimation: true,

@@ -32,7 +32,7 @@ class SessionStartedDialog extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 30.0),
                 decoration: BoxDecoration(
                   borderRadius: AppRadius.kRadiusMedium,
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -46,6 +46,7 @@ class SessionStartedDialog extends StatelessWidget {
                     ),
                     Text(
                       'The event:',
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     AppAdaptiveTextButton(
                       onPressed: () {
@@ -61,7 +62,8 @@ class SessionStartedDialog extends StatelessWidget {
                             '${session.title} has started',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
+                              color:
+                                  Theme.of(context).textTheme.bodyLarge!.color,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),

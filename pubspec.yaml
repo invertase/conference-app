@@ -22,7 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_html: ^3.0.0-alpha.5
-  flutter_local_notifications: ^14.1.0
+  flutter_local_notifications: ^14.1.1
   flutter_native_splash: ^2.2.7
   flutter_rating_bar: ^4.0.1
   flutter_riverpod: ^2.3.6
