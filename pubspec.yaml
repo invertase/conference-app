@@ -1,7 +1,7 @@
 name: conference_app
 description: A conference app built with Flutter.
 publish_to: "none"
-version: 0.0.1+00100
+version: 1.0.0+10000
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
