@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:conference_app/core/core.dart';
 
 import '../widgets/meet_speaker_card.dart';
 
@@ -28,7 +28,7 @@ class _SpeakersPageState extends ConsumerState<SpeakersPage>
     currentSpeaker ??= speakers.first;
 
     return ListView(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 30),
       children: [
         CarouselSlider.builder(
           options: CarouselOptions(

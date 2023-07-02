@@ -40,109 +40,118 @@ class _AgendaPageState extends ConsumerState<AgendaPage>
         .filterBy(ref.watch(dayRoomProvider));
     final dayRoomNotifier = ref.watch(dayRoomProvider.notifier);
 
-    return CustomScrollView(
-      controller: PrimaryScrollController.of(context),
-      slivers: [
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              children: [
-                AgendaDayPicker(
-                  initialDay: dayRoom.day,
-                  onDaySelected: (value) {
-                    if (value != dayRoom.day) {
-                      pageController.jumpToPage(0);
-                      dayRoomNotifier.update(
-                          (state) => state = state.copyWith(day: value));
-                    }
-                  },
-                ),
-                const SizedBox(height: 20),
-                if (eventRooms.length > 1)
-                  AgendaRoomPicker(
-                    onRoomSelected: (value) {
-                      if (value != dayRoom.room) {
-                        dayRoomNotifier.update(
-                            (state) => state = state.copyWith(room: value));
-                      }
-                    },
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      child: ref.watch(sessionsProvider).isLoading
+          ? const Center(child: CircularProgressIndicator.adaptive())
+          : CustomScrollView(
+              controller: PrimaryScrollController.of(context),
+              slivers: [
+                SliverPadding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  sliver: SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        AgendaDayPicker(
+                          initialDay: dayRoom.day,
+                          onDaySelected: (value) {
+                            if (value != dayRoom.day) {
+                              pageController.jumpToPage(0);
+                              dayRoomNotifier.update((state) =>
+                                  state = state.copyWith(day: value));
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        if (eventRooms.length > 1)
+                          AgendaRoomPicker(
+                            onRoomSelected: (value) {
+                              if (value != dayRoom.room) {
+                                dayRoomNotifier.update((state) =>
+                                    state = state.copyWith(room: value));
+                              }
+                            },
+                          ),
+                      ],
+                    ),
                   ),
-              ],
-            ),
-          ),
-        ),
-        // SliverToBoxAdapter(
-        //   child: AgendaHeader(
-        //     view: view,
-        //     onViewChanged: (value) {
-        //       setState(() {
-        //         view = value;
-        //       });
-        //     },
-        //   ),
-        // ),
-        SliverToBoxAdapter(
-          child: Visibility(
-            maintainAnimation: true,
-            maintainState: true,
-            visible: view == AgendaSpeakersView.carousel,
-            child: AnimatedScale(
-              filterQuality: FilterQuality.medium,
-              alignment: Alignment.center,
-              duration: const Duration(milliseconds: 900),
-              curve: Curves.elasticOut,
-              scale: view == AgendaSpeakersView.carousel ? 1.0 : 0.5,
-              child: CarouselAgenda(
-                pageController: pageController,
-                sessions: sessions,
-                key: const ValueKey(AgendaSpeakersView.carousel),
-              ),
-            ),
-          ),
-        ),
-        SliverPadding(
-          padding:
-              EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
-          sliver: SliverList(
-            key: ValueKey('__list_${dayRoomProvider}__'),
-            delegate: SliverChildListDelegate(
-              [
-                for (int i = 0; i < sessions.length; i++)
-                  Visibility(
+                ),
+                // SliverToBoxAdapter(
+                //   child: AgendaHeader(
+                //     view: view,
+                //     onViewChanged: (value) {
+                //       setState(() {
+                //         view = value;
+                //       });
+                //     },
+                //   ),
+                // ),
+                SliverToBoxAdapter(
+                  child: Visibility(
                     maintainAnimation: true,
                     maintainState: true,
-                    visible: view == AgendaSpeakersView.list,
+                    visible: view == AgendaSpeakersView.carousel,
                     child: AnimatedScale(
                       filterQuality: FilterQuality.medium,
                       alignment: Alignment.center,
                       duration: const Duration(milliseconds: 900),
                       curve: Curves.elasticOut,
-                      scale: view == AgendaSpeakersView.list ? 1.0 : 0.8,
-                      child: GestureDetector(
-                        onTap: () {
-                          HapticFeedback.lightImpact();
-                          context.pushSession(
-                            SessionDetails(
-                              session: sessions[i],
-                              speakers: ref.watch(sessionSpeakers(sessions[i])),
-                            ),
-                          );
-                        },
-                        child: AgendaCard(
-                          index: i + 1,
-                          session: sessions[i],
-                          speakers: ref.watch(sessionSpeakers(sessions[i])),
-                          isLarge: false,
-                        ),
+                      scale: view == AgendaSpeakersView.carousel ? 1.0 : 0.5,
+                      child: CarouselAgenda(
+                        pageController: pageController,
+                        sessions: sessions,
+                        key: const ValueKey(AgendaSpeakersView.carousel),
                       ),
                     ),
                   ),
+                ),
+                SliverPadding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).padding.bottom),
+                  sliver: SliverList(
+                    key: ValueKey('__list_${dayRoomProvider}__'),
+                    delegate: SliverChildListDelegate(
+                      [
+                        for (int i = 0; i < sessions.length; i++)
+                          Visibility(
+                            maintainAnimation: true,
+                            maintainState: true,
+                            visible: view == AgendaSpeakersView.list,
+                            child: AnimatedScale(
+                              filterQuality: FilterQuality.medium,
+                              alignment: Alignment.center,
+                              duration: const Duration(milliseconds: 900),
+                              curve: Curves.elasticOut,
+                              scale:
+                                  view == AgendaSpeakersView.list ? 1.0 : 0.8,
+                              child: GestureDetector(
+                                onTap: () {
+                                  HapticFeedback.lightImpact();
+                                  context.pushSession(
+                                    SessionDetails(
+                                      session: sessions[i],
+                                      speakers: ref
+                                          .watch(sessionSpeakers(sessions[i])),
+                                    ),
+                                  );
+                                },
+                                child: AgendaCard(
+                                  index: i + 1,
+                                  session: sessions[i],
+                                  speakers:
+                                      ref.watch(sessionSpeakers(sessions[i])),
+                                  isLarge: false,
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
-          ),
-        ),
-      ],
     );
   }
 

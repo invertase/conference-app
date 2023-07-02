@@ -18,7 +18,7 @@ List<DrawerItem> drawerItems = [
   ),
   const DrawerItem(
     id: DrawerItemId.credit,
-    title: 'Credit',
+    title: 'About the app',
     icon: AppIcons.sendFeedback,
     route: RouteNames.credit,
   ),

@@ -21,7 +21,7 @@ class _SpeakerInfoPageState extends ConsumerState<SpeakerInfoPage> {
   @override
   Widget build(BuildContext context) {
     final titleStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).primaryColorLight,
           fontWeight: FontWeight.bold,
         );
     return Scaffold(
@@ -49,6 +49,7 @@ class _SpeakerInfoPageState extends ConsumerState<SpeakerInfoPage> {
                     child: Text(
                       widget.speaker.fullName,
                       style: titleStyle,
+                      textScaleFactor: 1.5,
                     ),
                   ),
                   Padding(
@@ -147,7 +148,9 @@ class SpeakerSessionCard extends ConsumerWidget {
         children: [
           Text(
             session.title,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(height: 15),
           Text(
@@ -157,7 +160,10 @@ class SpeakerSessionCard extends ConsumerWidget {
           const SizedBox(height: 15),
           Text(
             'Talk date',
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).primaryColorLight,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           Text(
             dateFormat.format(session.startsAt),
@@ -166,7 +172,10 @@ class SpeakerSessionCard extends ConsumerWidget {
           const SizedBox(height: 15),
           Text(
             'Room',
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).primaryColorLight,
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           Text(
             eventRooms[session.roomId.toString()]!.name,

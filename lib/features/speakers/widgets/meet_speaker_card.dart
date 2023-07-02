@@ -23,6 +23,7 @@ class MeetSpeakerCard extends StatelessWidget {
       child: Stack(
         children: [
           AnimatedContainer(
+            margin: const EdgeInsets.only(top: 20),
             duration: const Duration(milliseconds: 500),
             alignment: AlignmentDirectional.bottomStart,
             clipBehavior: Clip.antiAliasWithSaveLayer,

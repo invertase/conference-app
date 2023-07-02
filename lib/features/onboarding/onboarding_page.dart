@@ -140,11 +140,11 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                     const SizedBox(height: 40),
                     const Text('The Biggest Flutter Conference!'),
                     const SizedBox(height: 20),
-                    Text(
+                    const Text(
                       '5 - 7 July, 2023',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: AppColors.textColorMediumEmphacy,
-                          ),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
