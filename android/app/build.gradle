@@ -13,7 +13,7 @@ if (debugkeystorePropertiesFile.exists()) {
 }
 
 def releasekeystoreProperties = new Properties()
-def releasekeystorePropertiesFile = rootProject.file('releasekey.properties')
+def releasekeystorePropertiesFile = rootProject.file('key.properties')
 if (releasekeystorePropertiesFile.exists()) {
     releasekeystoreProperties.load(new FileInputStream(releasekeystorePropertiesFile))
 }
