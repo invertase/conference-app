@@ -22,4 +22,10 @@ List<DrawerItem> drawerItems = [
     icon: AppIcons.sendFeedback,
     route: RouteNames.credit,
   ),
+  const DrawerItem(
+    id: DrawerItemId.credit,
+    title: 'Floor plan',
+    icon: AppIcons.sendFeedback,
+    route: RouteNames.floorPlan,
+  ),
 ];

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conference_app/features/features.dart';
+import 'package:conference_app/features/floorplan/pages/floorplan_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../configs/local_storage_keys.dart';
-import '../models/activity.dart';
 import '../models/session_details.dart';
 import '../models/speaker.dart';
 import '../models/tab_item.dart';
@@ -119,17 +119,9 @@ class AppRouter {
                 builder: (context, state) => const CreditPage(),
               ),
               GoRoute(
-                path: RoutePaths.activites,
-                name: RouteNames.activites,
-                builder: (context, state) => const Activites(),
-                routes: [
-                  GoRoute(
-                    path: RoutePaths.activity,
-                    name: RouteNames.activity,
-                    builder: (context, state) =>
-                        ActivityDetailsPage(activity: state.extra as Activity),
-                  ),
-                ],
+                path: RoutePaths.floorPlan,
+                name: RouteNames.floorPlan,
+                builder: (context, state) => const FloorplanPage(),
               ),
               GoRoute(
                 path: RoutePaths.aboutUs,
