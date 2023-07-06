@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../models/notification.dart';
 import '../models/session.dart';
@@ -11,9 +14,11 @@ import 'app_router_extension.dart';
 
 class NotificationClickCallback {
   final Function(Future<Session?> session, {bool dialog}) onSessionClick;
+  final Function(String url) onUrlClick;
 
   NotificationClickCallback({
     required this.onSessionClick,
+    required this.onUrlClick,
   });
 }
 
@@ -32,6 +37,10 @@ class NotificationObserver extends NavigatorObserver {
     notificationsService.setHandlers(onMessageReceived: (notification) {
       final callbacks = getNotificationsHandler(navigator?.context);
       final data = notification.data;
+
+      if (data.containsKey('url') && !notification.isForground) {
+        callbacks.onUrlClick(data['url']);
+      }
 
       if (data.containsKey('sessionId')) {
         if (notification.action == NotificationAction.silent ||
@@ -126,6 +135,15 @@ class NotificationObserver extends NavigatorObserver {
               });
             }
           });
+        }
+      },
+      onUrlClick: (String url) async {
+        if (context != null && await canLaunchUrlString(url)) {
+          try {
+            await launchUrlString(url, mode: LaunchMode.externalApplication);
+          } catch (e) {
+            log('Error launching url: $url', error: e);
+          }
         }
       },
     );

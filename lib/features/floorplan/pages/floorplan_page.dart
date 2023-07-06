@@ -8,19 +8,18 @@ class FloorplanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
-        statusBarBrightness: Theme.of(context).brightness,
+      value: const SystemUiOverlayStyle(
+        statusBarBrightness: Brightness.light,
       ),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Stack(
           children: [
             Center(
-              child: Container(
-                margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).padding.top + 70,
-                  left: 30,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top + 40,
                 ),
-                color: Colors.yellow,
                 child: Image.asset(
                   'assets/images/floorplan.png',
                   fit: BoxFit.cover,
