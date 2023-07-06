@@ -25,6 +25,7 @@ class ConferenceAppBar extends StatelessWidget implements PreferredSizeWidget {
               width: 40,
               height: 40,
               child: AppAdaptiveIconButton(
+                key: const ValueKey('back_button'),
                 onPressed: context.pop,
                 child: const Icon(Icons.arrow_back_ios_new_rounded),
               ),

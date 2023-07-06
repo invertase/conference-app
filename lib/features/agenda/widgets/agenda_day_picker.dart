@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:conference_app/core/core.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class AgendaDayPicker extends StatefulWidget {
@@ -68,6 +68,7 @@ class _AgendaDayPickerState extends State<AgendaDayPicker> {
                     child: Builder(
                       builder: (context) {
                         return SizedBox(
+                          key: ValueKey(day.name),
                           width: double.infinity,
                           child: AppAdaptiveTextButton(
                             noPadding: true,

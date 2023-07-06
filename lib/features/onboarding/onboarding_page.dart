@@ -220,6 +220,7 @@ class _OnboardingPageState extends ConsumerState<OnboardingPage>
                         width: 55,
                         height: 55,
                         child: AppAdaptiveIconButton(
+                          key: const Key('onboardingPage_startButton'),
                           fillColor: Theme.of(context).primaryColor,
                           onPressed: context.goHome,
                           child: const Icon(

@@ -71,6 +71,7 @@ class MainBottomNavigationBar extends StatelessWidget {
                   children: [
                     for (final tab in tabs)
                       MainBottomNavigatiopnBarIcon(
+                        key: ValueKey(tab.id),
                         onPressed: () => onTabSelected?.call(tab.id.index),
                         icon: tab.icon,
                         color: tab.iconColor,
