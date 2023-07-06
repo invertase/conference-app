@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 
+import 'room_badge.dart';
 import 'session_status_badge.dart';
 
 class MyAgendaSessionCard extends StatelessWidget {
@@ -33,6 +34,7 @@ class MyAgendaSessionCard extends StatelessWidget {
         ?.copyWith(color: Theme.of(context).primaryColorLight);
 
     return Container(
+      height: 200,
       width: isFullWidth
           ? double.infinity
           : MediaQuery.of(context).size.width * .75,
@@ -94,61 +96,69 @@ class MyAgendaSessionCard extends StatelessWidget {
                 ],
               ),
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SessionStatusBadge(status: session.status),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            SizedBox(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      Text(
-                        session.title,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        speakers.map((e) => e.fullName).join(' — '),
-                        style: Theme.of(context).textTheme.bodySmall,
-                      )
+                      SessionStatusBadge(status: session.status),
+                      const SizedBox(width: 10),
+                      RoomBadge(room: eventRooms[session.roomId.toString()]!)
                     ],
                   ),
-                ),
-                const SizedBox(height: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(dateFormat.format(session.startsAt)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          timeFormat.format(session.startsAt),
-                          style: timeTextStyle,
-                        ),
-                        SizedBox(
-                          width: 30,
-                          child: Transform.rotate(
-                            angle: -pi / 2,
-                            child: SvgPicture.asset(
-                              'assets/images/agenda_time_indicator.svg',
-                              width: 5,
-                            ),
-                          ),
+                          session.title,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
                         Text(
-                          timeFormat.format(session.endsAt),
-                          style: timeTextStyle,
-                        ),
-                        const Spacer(),
+                          speakers.map((e) => e.fullName).join(' — '),
+                          style: Theme.of(context).textTheme.bodySmall,
+                        )
                       ],
                     ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-              ],
+                  ),
+                  const SizedBox(height: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(dateFormat.format(session.startsAt)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            timeFormat.format(session.startsAt),
+                            style: timeTextStyle,
+                          ),
+                          SizedBox(
+                            width: 30,
+                            child: Transform.rotate(
+                              angle: -pi / 2,
+                              child: SvgPicture.asset(
+                                'assets/images/agenda_time_indicator.svg',
+                                width: 5,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            timeFormat.format(session.endsAt),
+                            style: timeTextStyle,
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
             ),
           ],
         ),
