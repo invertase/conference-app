@@ -1,0 +1,30 @@
+name: conference_app_toolkit
+description: A toolkit for building conference apps with Flutter.
+repository: https://github.com/invertase/conference-app
+
+version: 0.1.0+1
+
+environment:
+  mason: ">=0.1.0-dev.50 <0.1.0"
+
+vars:
+  app_name:
+    type: string
+    description: Your app name
+    default: example
+    prompt: What is your app name?
+  recursive_domain:
+    type: string
+    description: Your app domain
+    default: com.example.app
+    prompt: What is your app domain?
+  prod_firebaseProject:
+    type: string
+    description: Your Firebase project name
+    default: fluttercon-berlin
+    prompt: What is your Firebase project name?
+  dev_firebaseProject:
+    type: string
+    description: Your Firebase project name
+    default: fluttercon-berlin
+    prompt: What is your Firebase project name?
