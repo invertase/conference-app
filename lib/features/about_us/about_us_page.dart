@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class AboutUsPage extends StatelessWidget {
@@ -15,8 +16,8 @@ class AboutUsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.asset(
-                'assets/images/logo.png',
+              child: SvgPicture.asset(
+                'assets/images/logo.svg',
                 width: 100,
               ),
             ),

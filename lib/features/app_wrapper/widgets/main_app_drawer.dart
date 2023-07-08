@@ -1,12 +1,12 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
-import 'package:flutter_vikings/core/src/models/tab_item.dart';
-import 'package:flutter_vikings/features/app_wrapper/models/drawer_item.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../configs/drawer_items.dart';
+import '../models/drawer_item.dart';
 import 'app_theme_switch.dart';
 import 'main_app_drawer_list_item.dart';
 
@@ -40,9 +40,9 @@ class MainAppDrawer extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Image.asset(
+                SvgPicture.asset(
                   AppImages.logo,
-                  height: MediaQuery.of(context).size.width * .08,
+                  width: 100,
                 ),
                 const AppThemeSwitch(),
                 Container(

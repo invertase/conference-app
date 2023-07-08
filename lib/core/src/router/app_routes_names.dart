@@ -11,4 +11,5 @@ class RouteNames {
   static const activites = 'activities';
   static const activity = 'activity';
   static const aboutUs = 'about-us';
+  static const floorPlan = 'floorplan';
 }

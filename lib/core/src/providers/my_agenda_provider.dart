@@ -8,7 +8,7 @@ import 'local_storage_provider.dart';
 import 'messaging_provider.dart';
 import 'sessions_provider.dart';
 
-typedef MyAgendaState = Map<String, List<Session>>;
+typedef MyAgendaState = Map<DateTime, List<Session>>;
 
 final myAgenda =
     StateNotifierProvider<MyAgendaProvider, BaseState<MyAgendaState>>((ref) {
@@ -21,7 +21,6 @@ class MyAgendaProvider extends BaseStateNotifierProvider<MyAgendaState> {
   }
 
   final Ref ref;
-  final myAgenda = <String, List<Session>>{};
 
   void _refreshMyAgenda() {
     setLoadingState();
@@ -37,12 +36,23 @@ class MyAgendaProvider extends BaseStateNotifierProvider<MyAgendaState> {
 
         myAgenda.sort((a, b) => a.startsAt.compareTo(b.startsAt));
 
+        myAgenda.removeWhere(
+            (Session session) => session.startsAt.isBefore(DateTime.now()));
+
+        // myAgenda.removeWhere(
+        //     (Session session) => session.endsAt.isBefore(DateTime.now()));
+
         if (myAgenda.isEmpty) {
           setEmptyState();
         } else {
-          setLoadedState(
-            groupBy(myAgenda, (session) => session.roomId.toString()),
-          );
+          setLoadedState(groupBy(
+            myAgenda,
+            (Session session) => DateTime(
+              session.startsAt.year,
+              session.startsAt.month,
+              session.startsAt.day,
+            ),
+          ));
         }
       },
       error: (error, stackTrace) {
@@ -79,9 +89,11 @@ class MyAgendaProvider extends BaseStateNotifierProvider<MyAgendaState> {
 /// The number of sessions added to the user's local storage.
 final myAgendaLength = StateProvider<int>((ref) {
   return ref.watch(myAgenda).map<int>(
-        data: (myAgenda) => (myAgenda.data as Map<String, List<Session>>)
+        data: (myAgenda) => (myAgenda.data as MyAgendaState)
             .values
-            .expand((element) => element)
+            .expand(
+              (element) => element,
+            )
             .length,
         empty: (_) => 0,
         initial: (_) => 0,
@@ -93,9 +105,11 @@ final myAgendaLength = StateProvider<int>((ref) {
 /// Returns [true] if the session is in My Agenda local storage, [false] otherwise.
 final isAddedToMyAgenda = StateProvider.family<bool, Session>((ref, session) {
   return ref.watch(myAgenda).map<bool>(
-        data: (myAgenda) => (myAgenda.data as Map<String, List<Session>>)
+        data: (myAgenda) => (myAgenda.data as MyAgendaState)
             .values
-            .expand((element) => element)
+            .expand(
+              (element) => element,
+            )
             .contains(session),
         empty: (_) => false,
         initial: (_) => false,

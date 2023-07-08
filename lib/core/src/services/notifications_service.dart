@@ -138,8 +138,8 @@ class NotificationsService {
     NotificationScreen screen;
 
     try {
-      action = NotificationAction.values.byName(data['action']);
-      screen = NotificationScreen.values.byName(data['screen']);
+      action = NotificationAction.values.byName(data['action'] ?? '');
+      screen = NotificationScreen.values.byName(data['screen'] ?? '');
     } on ArgumentError {
       action = NotificationAction.unknown;
       screen = NotificationScreen.unknown;

@@ -1,9 +1,8 @@
 import 'dart:math';
 
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_vikings/core/core.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import 'agenda_session_speaker.dart';
@@ -72,11 +71,7 @@ class AgendaSessionCardList extends StatelessWidget {
                         opacity: 0.2,
                         child: Text(
                           sessionNumberFormatter.format(index),
-                          style:
-                              Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    fontFamily:
-                                        GoogleFonts.caesarDressing().fontFamily,
-                                  ),
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
                     ),
@@ -94,21 +89,20 @@ class AgendaSessionCardList extends StatelessWidget {
                         children: [
                           Text(
                             session.title,
+                            textScaleFactor:
+                                speakers?.isEmpty ?? true ? 1.2 : 1.0,
                             style: speakers?.isEmpty ?? true
                                 ? Theme.of(context)
                                     .textTheme
                                     .titleLarge
                                     ?.copyWith(
                                       fontWeight: FontWeight.bold,
-                                      fontFamily: GoogleFonts.caesarDressing()
-                                          .fontFamily,
                                       color: Theme.of(context).brightness ==
                                               Brightness.dark
                                           ? Colors.white
                                           : AppColors.primaryColorMain,
-                                      fontSize: 28,
                                     )
-                                : Theme.of(context).textTheme.titleLarge,
+                                : Theme.of(context).textTheme.titleMedium,
                           ),
                           const SizedBox(height: 10),
                           if (speakers != null)
@@ -116,7 +110,7 @@ class AgendaSessionCardList extends StatelessWidget {
                               Expanded(
                                 child: AgendaSessionSpeaker(
                                   speakerName: s.fullName,
-                                  speakerJob: s.tagLine,
+                                  speakerJob: s.tagLine ?? '',
                                   speakerImageUrl: s.profilePicture,
                                 ),
                               ),

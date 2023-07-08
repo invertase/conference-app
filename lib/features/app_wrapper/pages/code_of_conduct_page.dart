@@ -1,5 +1,5 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewWithLoadingIndicator extends StatefulWidget {
@@ -111,7 +111,7 @@ class CodeOfConductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const WebViewWithLoadingIndicator(
       title: 'Code of Conduct',
-      url: 'https://fluttervikings.com/code-of-conduct/',
+      url: 'https://fluttercon.dev/code-of-conduct/',
     );
   }
 }

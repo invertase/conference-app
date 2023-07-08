@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +27,11 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  _useEmulator(useEmulator: true);
+
   final localStorageService = LocalStorageService();
   await localStorageService.init(LocalStorageKeys.hiveBoxName);
   final messaging = MessagingService(FirebaseMessaging.instance);
-
   await PackageInfo.fromPlatform();
 
   SystemChrome.setPreferredOrientations([
@@ -46,4 +48,11 @@ void main() async {
       child: const ConferenceApp(),
     ),
   );
+}
+
+_useEmulator({useEmulator = false}) {
+  final firestore = FirebaseFirestore.instance;
+  if (useEmulator) {
+    firestore.useFirestoreEmulator('localhost', 8080);
+  }
 }

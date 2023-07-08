@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import '../models/activity.dart';
 import '../models/session_details.dart';
 import '../models/speaker.dart';
-import '../models/sponsor.dart';
 import '../models/tab_item.dart';
 import 'app_routes_names.dart';
 
@@ -35,17 +34,6 @@ extension AppRouterExtension on BuildContext {
       pathParameters: {
         'tab': tab?.name ?? TabItemId.agenda.name,
       },
-    );
-  }
-
-  void pushSponsor(
-    Sponsor sponsor, {
-    TabItemId? tab,
-  }) {
-    GoRouter.of(this).pushNamed(
-      RouteNames.sponsor,
-      extra: sponsor,
-      pathParameters: {'tab': tab?.name ?? TabItemId.sponsors.name},
     );
   }
 

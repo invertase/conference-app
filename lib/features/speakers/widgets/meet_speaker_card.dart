@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vikings/core/core.dart';
 
 class MeetSpeakerCard extends StatelessWidget {
   const MeetSpeakerCard({
@@ -23,6 +23,7 @@ class MeetSpeakerCard extends StatelessWidget {
       child: Stack(
         children: [
           AnimatedContainer(
+            margin: const EdgeInsets.only(top: 20),
             duration: const Duration(milliseconds: 500),
             alignment: AlignmentDirectional.bottomStart,
             clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -51,11 +52,13 @@ class MeetSpeakerCard extends StatelessWidget {
               boxShadow: [AppShadows.secondaryBlue],
               borderRadius: BorderRadius.circular(20),
             ),
-            child: CachedNetworkImage(
-              imageUrl: speaker.profilePicture,
-              fit: BoxFit.fitHeight,
-              height: double.infinity,
-            ),
+            child: speaker.profilePicture == null
+                ? const SizedBox()
+                : CachedNetworkImage(
+                    imageUrl: speaker.profilePicture!,
+                    fit: BoxFit.fitHeight,
+                    height: double.infinity,
+                  ),
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
@@ -77,7 +80,7 @@ class MeetSpeakerCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  speaker.tagLine,
+                  speaker.tagLine ?? '',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.white,
                       ),

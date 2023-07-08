@@ -1,5 +1,5 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart';
 import 'package:intl/intl.dart';
 
 class AgendaDayPicker extends StatefulWidget {
@@ -51,13 +51,13 @@ class _AgendaDayPickerState extends State<AgendaDayPicker> {
             borderRadius: BorderRadius.circular(15),
             color: Theme.of(context).brightness == Brightness.light
                 ? null
-                : Colors.white.withOpacity(0.02),
+                : Colors.white.withOpacity(0.04),
           ),
           child: TabBar(
             enableFeedback: true,
             splashBorderRadius: BorderRadius.circular(15),
             indicator: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.primary,
               borderRadius: BorderRadius.circular(15),
             ),
             labelPadding: EdgeInsets.zero,
@@ -68,6 +68,7 @@ class _AgendaDayPickerState extends State<AgendaDayPicker> {
                     child: Builder(
                       builder: (context) {
                         return SizedBox(
+                          key: ValueKey(day.name),
                           width: double.infinity,
                           child: AppAdaptiveTextButton(
                             noPadding: true,
@@ -99,7 +100,7 @@ class _AgendaDayPickerState extends State<AgendaDayPicker> {
                                         .copyWith(
                                           color: Theme.of(context).brightness ==
                                                   Brightness.light
-                                              ? const Color(0xff1AD3AF)
+                                              ? AppColors.secondaryColorMain
                                               : Colors.white54,
                                         ),
                                   ),

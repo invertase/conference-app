@@ -1,6 +1,7 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
+import 'package:intl/intl.dart';
 
 import '../widgets/my_agenda_session_card.dart';
 import '../widgets/no_sessions.dart';
@@ -17,6 +18,7 @@ class _MyAgendaState extends ConsumerState<MyAgenda>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    final format = DateFormat('E d, MMM y');
 
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 800),
@@ -35,58 +37,58 @@ class _MyAgendaState extends ConsumerState<MyAgenda>
                   bottom: MediaQuery.of(context).padding.bottom,
                 ),
                 children: [
-                  for (String roomId in data.keys)
+                  for (DateTime day in data.keys)
                     Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const SizedBox(height: 20),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Text(
-                            eventRooms[roomId]?.name ?? '',
-                            style: Theme.of(context).textTheme.bodyMedium,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  format.format(day),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                              ),
+                              Text(
+                                '${data[day]?.length ?? 0} sessions',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      color:
+                                          Theme.of(context).primaryColorLight,
+                                    ),
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          height: 250,
-                          child: ListView.separated(
-                            physics: const BouncingScrollPhysics(),
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 25,
-                              horizontal: 20,
+                        for (Session session in data[day] ?? [])
+                          PushSessionGestureDetector(
+                            sessionDetails: SessionDetails(
+                              session: session,
+                              speakers: ref.watch(sessionSpeakers(session)),
                             ),
-                            scrollDirection: Axis.horizontal,
-                            itemCount: data[roomId]?.length ?? 0,
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(width: 20),
-                            itemBuilder: (context, index) {
-                              final session = data[roomId]?[index];
-                              if (session != null) {
-                                final speakers =
-                                    ref.watch(sessionSpeakers(session));
-                                return PushSessionGestureDetector(
-                                  sessionDetails: SessionDetails(
-                                    session: session,
-                                    speakers: speakers,
-                                  ),
-                                  child: MyAgendaSessionCard(
-                                    session: session,
-                                    speakers: speakers,
-                                    isFullWidth: false,
-                                    onDelete: () {
-                                      ref
-                                          .watch(myAgenda.notifier)
-                                          .remove(session);
-                                    },
-                                  ),
-                                );
-                              }
-
-                              return const SizedBox();
-                            },
-                          ),
-                        ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: MyAgendaSessionCard(
+                                session: session,
+                                speakers: ref.watch(sessionSpeakers(session)),
+                                isFullWidth: true,
+                                onDelete: () {
+                                  ref.watch(myAgenda.notifier).remove(session);
+                                },
+                              ),
+                            ),
+                          )
                       ],
                     )
                 ],
@@ -105,5 +107,5 @@ class _MyAgendaState extends ConsumerState<MyAgenda>
   }
 
   @override
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 }

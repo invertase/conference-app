@@ -1,11 +1,11 @@
-name: flutter_vikings
-description: A new Flutter project.
-publish_to: 'none'
-version: 1.2.1+12101
+name: conference_app
+description: A conference app built with Flutter.
+publish_to: "none"
+version: 1.0.2+10200
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: '>=3.0.0 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0 <4.0.0"
 
 dependencies:
   cached_network_image: ^3.2.1
@@ -22,7 +22,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_html: ^3.0.0-alpha.5
-  flutter_local_notifications: ^14.1.0
+  flutter_local_notifications: ^14.1.1
   flutter_native_splash: ^2.2.7
   flutter_rating_bar: ^4.0.1
   flutter_riverpod: ^2.3.6
@@ -55,14 +55,15 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: 'assets/icons/launcherIcon_android.png'
-  image_path_ios: 'assets/icons/launcherIcon_ios.png'
-  adaptive_icon_background: '#ffffff'
+  image_path: "assets/icons/launcherIcon_android.png"
+  image_path_ios: "assets/icons/launcherIcon_ios.png"
+  adaptive_icon_background: "#ffffff"
 
 flutter_native_splash:
-  color: '#FFFFFF'
-  color_dark: '#02192C'
-  image: assets/images/logoWithText.png
+  color: "#FFFFFF"
+  color_dark: "#00063B"
+  image: assets/images/splash_image_light.png
+  image_dark: assets/images/splash_image_dark.png
 
 flutter:
   uses-material-design: true
@@ -70,4 +71,3 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
-    - assets/images/games/dashing_vikings/

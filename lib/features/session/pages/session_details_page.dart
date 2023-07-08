@@ -2,14 +2,14 @@ import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/core/core.dart';
-import 'package:flutter_vikings/features/session/widgets/rate_dialog.dart';
 import 'package:intl/intl.dart';
 
 import '../../ticket/providers/ticket_provider.dart';
 import '../providers/session_rate_provider.dart';
+import '../widgets/rate_dialog.dart';
 import '../widgets/session_added_banner.dart';
 import '../widgets/session_live_banner.dart';
 import '../widgets/session_rate_banner.dart';
@@ -98,9 +98,9 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
             child: ListView(
               controller: PrimaryScrollController.of(context),
               padding: EdgeInsets.fromLTRB(
-                0,
+                10,
                 MediaQuery.of(context).padding.top,
-                0,
+                10,
                 MediaQuery.of(context).padding.bottom,
               ),
               children: [
@@ -148,11 +148,12 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
                           ref.watch(canRate(widget.session.id)),
                     ),
                   ),
-                SpeakerProfileImage(
-                  images: widget.speakers
-                      .map((speaker) => speaker.profilePicture)
-                      .toList(),
-                ),
+                if (widget.speakers.map((e) => e.profilePicture).isNotEmpty)
+                  GestureDetector(
+                    child: SpeakerProfileImage(
+                      speakers: widget.speakers,
+                    ),
+                  ),
                 const SizedBox(height: 30),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
@@ -259,28 +260,42 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
 class SpeakerProfileImage extends StatelessWidget {
   const SpeakerProfileImage({
     Key? key,
-    required this.images,
+    required this.speakers,
   }) : super(key: key);
 
-  final List<String> images;
+  final List<Speaker> speakers;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        for (final image in images)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: CustomPaint(
-              painter: CustomSpeakerBorder(),
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: CachedNetworkImageProvider(image),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (final s in speakers)
+            Expanded(
+              child: GestureDetector(
+                onTap: () => context.pushSpeaker(s),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
+                    child: CustomPaint(
+                      painter: CustomSpeakerBorder(),
+                      child: CircleAvatar(
+                          maxRadius: 50,
+                          minRadius: 40,
+                          foregroundImage: s.profilePicture == null
+                              ? null
+                              : CachedNetworkImageProvider(s.profilePicture!),
+                          backgroundImage: const AssetImage(
+                              'assets/images/profile_placeholder.png')),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -290,13 +305,13 @@ class CustomSpeakerBorder extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     Rect drawingRect = Rect.fromCircle(
       center: Offset(size.width / 2, size.height / 2),
-      radius: size.width / 1.65,
+      radius: size.width / 1.8,
     );
 
     final Paint paint = Paint();
     paint.color = AppColors.primaryColorMain;
     paint.style = PaintingStyle.stroke;
-    paint.strokeWidth = 9;
+    paint.strokeWidth = 6;
     paint.strokeCap = StrokeCap.round;
 
     canvas.drawArc(

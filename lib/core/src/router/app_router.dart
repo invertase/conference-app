@@ -1,16 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:conference_app/features/features.dart';
+import 'package:conference_app/features/floorplan/pages/floorplan_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_vikings/features/features.dart';
 import 'package:go_router/go_router.dart';
 
 import '../configs/local_storage_keys.dart';
-import '../models/activity.dart';
 import '../models/session_details.dart';
 import '../models/speaker.dart';
-import '../models/sponsor.dart';
 import '../models/tab_item.dart';
 import '../providers/local_storage_provider.dart';
 import '../providers/sessions_provider.dart';
@@ -105,13 +104,6 @@ class AppRouter {
                 ),
               ),
               GoRoute(
-                path: RoutePaths.sponsor,
-                name: RouteNames.sponsor,
-                builder: (context, state) => SponsorInfoPage(
-                  sponsor: state.extra as Sponsor,
-                ),
-              ),
-              GoRoute(
                 path: RoutePaths.notifications,
                 name: RouteNames.notifications,
                 builder: (context, state) => const NotificationsPage(),
@@ -122,27 +114,14 @@ class AppRouter {
                 builder: (context, state) => const CodeOfConductPage(),
               ),
               GoRoute(
-                path: RoutePaths.games,
-                name: RouteNames.games,
-                builder: (context, state) => const GamePage(),
-              ),
-              GoRoute(
                 path: RoutePaths.credit,
                 name: RouteNames.credit,
                 builder: (context, state) => const CreditPage(),
               ),
               GoRoute(
-                path: RoutePaths.activites,
-                name: RouteNames.activites,
-                builder: (context, state) => const Activites(),
-                routes: [
-                  GoRoute(
-                    path: RoutePaths.activity,
-                    name: RouteNames.activity,
-                    builder: (context, state) =>
-                        ActivityDetailsPage(activity: state.extra as Activity),
-                  ),
-                ],
+                path: RoutePaths.floorPlan,
+                name: RouteNames.floorPlan,
+                builder: (context, state) => const FloorplanPage(),
               ),
               GoRoute(
                 path: RoutePaths.aboutUs,

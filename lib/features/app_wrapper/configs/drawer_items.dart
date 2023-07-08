@@ -1,6 +1,5 @@
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 
-import '../../../core/src/models/tab_item.dart';
 import '../models/drawer_item.dart';
 
 List<DrawerItem> drawerItems = [
@@ -12,34 +11,21 @@ List<DrawerItem> drawerItems = [
     tabItemId: TabItemId.myAgenda,
   ),
   const DrawerItem(
-    id: DrawerItemId.sponsors,
-    title: 'Sponsors',
-    icon: AppIcons.sponsors,
-    route: 'route',
-    tabItemId: TabItemId.sponsors,
-  ),
-  const DrawerItem(
     id: DrawerItemId.codeOfConduct,
     title: 'Code of conduct',
     icon: AppIcons.codeOfConduct,
     route: RouteNames.codeOfConduct,
   ),
   const DrawerItem(
-    id: DrawerItemId.games,
-    title: 'Games',
-    icon: AppIcons.games,
-    route: 'games',
-  ),
-  const DrawerItem(
-    id: DrawerItemId.aboutUs,
-    title: 'About us',
-    icon: AppIcons.aboutUs,
-    route: RouteNames.aboutUs,
+    id: DrawerItemId.credit,
+    title: 'About the app',
+    icon: AppIcons.sendFeedback,
+    route: RouteNames.credit,
   ),
   const DrawerItem(
     id: DrawerItemId.credit,
-    title: 'Credit',
+    title: 'Floor plan',
     icon: AppIcons.sendFeedback,
-    route: RouteNames.credit,
+    route: RouteNames.floorPlan,
   ),
 ];

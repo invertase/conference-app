@@ -16,6 +16,7 @@ export 'src/models/session_details.dart';
 export 'src/models/session_rate.dart';
 export 'src/models/speaker.dart';
 export 'src/models/sponsor.dart';
+export 'src/models/tab_item.dart';
 export 'src/models/ticket.dart';
 export 'src/providers/app_current_tab_provider.dart';
 export 'src/providers/base_state_notifier_provider.dart';

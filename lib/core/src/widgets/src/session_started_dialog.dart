@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SessionStartedDialog extends StatelessWidget {
   const SessionStartedDialog({
@@ -32,24 +32,21 @@ class SessionStartedDialog extends StatelessWidget {
                 margin: const EdgeInsets.only(bottom: 30.0),
                 decoration: BoxDecoration(
                   borderRadius: AppRadius.kRadiusMedium,
-                  color: Colors.white,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: Image.asset(
+                      child: SvgPicture.asset(
                         AppImages.logo,
-                        width: MediaQuery.of(context).size.width * .15,
+                        width: 100,
                       ),
                     ),
                     Text(
                       'The event:',
-                      style: GoogleFonts.caesarDressing(
-                        color: Colors.grey,
-                        fontSize: 18,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     AppAdaptiveTextButton(
                       onPressed: () {
@@ -65,7 +62,8 @@ class SessionStartedDialog extends StatelessWidget {
                             '${session.title} has started',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
+                              color:
+                                  Theme.of(context).textTheme.bodyLarge!.color,
                               fontWeight: FontWeight.bold,
                               fontSize: 20,
                             ),
@@ -94,10 +92,6 @@ class SessionStartedDialog extends StatelessWidget {
                     ),
                     Text(
                       '${speakers.map((e) => e.fullName).join(' & ')} ${speakers.length > 1 ? 'are' : 'is'} speaking...',
-                      style: GoogleFonts.caesarDressing(
-                        color: Colors.grey,
-                        fontSize: 16,
-                      ),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 60),
@@ -183,11 +177,12 @@ class _AnimatedSpeakerTalkingAvatarState
               _buildContainer(width * _controller.value),
               _buildContainer((width + 20) * _controller.value),
               _buildContainer((width + 30) * _controller.value),
-              CircleAvatar(
-                radius: 50,
-                backgroundImage:
-                    CachedNetworkImageProvider(widget.speaker.profilePicture),
-              ),
+              if (widget.speaker.profilePicture != null)
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: CachedNetworkImageProvider(
+                      widget.speaker.profilePicture!),
+                ),
             ],
           );
         },

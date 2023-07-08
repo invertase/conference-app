@@ -13,7 +13,7 @@ if (debugkeystorePropertiesFile.exists()) {
 }
 
 def releasekeystoreProperties = new Properties()
-def releasekeystorePropertiesFile = rootProject.file('releasekey.properties')
+def releasekeystorePropertiesFile = rootProject.file('key.properties')
 if (releasekeystorePropertiesFile.exists()) {
     releasekeystoreProperties.load(new FileInputStream(releasekeystorePropertiesFile))
 }
@@ -58,7 +58,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.fluttercon.app"
+        applicationId "io.invertase.fluttercon"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -66,12 +66,12 @@ android {
     }
 
    signingConfigs {
-        debug {
-           keyAlias debugkeystoreProperties['keyAlias']
-           keyPassword debugkeystoreProperties['keyPassword']
-           storeFile debugkeystoreProperties['storeFile'] ? file(debugkeystoreProperties['storeFile']) : null
-           storePassword debugkeystoreProperties['storePassword']
-       }
+    //     debug {
+    //        keyAlias debugkeystoreProperties['keyAlias']
+    //        keyPassword debugkeystoreProperties['keyPassword']
+    //        storeFile debugkeystoreProperties['storeFile'] ? file(debugkeystoreProperties['storeFile']) : null
+    //        storePassword debugkeystoreProperties['storePassword']
+    //    }
        release {
             if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
                 storeFile file(System.getenv()["CM_KEYSTORE_PATH"])

@@ -1,5 +1,5 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vikings/core/core.dart';
 
 import 'session_banner.dart';
 

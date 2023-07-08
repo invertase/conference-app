@@ -11,12 +11,12 @@ class Speaker with _$Speaker {
     required String firstName,
     required String lastName,
     required String fullName,
-    required String bio,
-    required String tagLine,
-    required String profilePicture,
-    required bool isTopSpeaker,
-    required List<dynamic> links,
     required List<int> sessions,
+    String? profilePicture,
+    String? bio,
+    String? tagLine,
+    bool? isTopSpeaker,
+    List<dynamic>? links,
   }) = _Speaker;
 
   factory Speaker.fromJson(Map<String, Object?> json) =>

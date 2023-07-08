@@ -1,4 +1,4 @@
-import 'package:flutter_vikings/core/core.dart';
+import 'package:conference_app/core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'day_room.freezed.dart';

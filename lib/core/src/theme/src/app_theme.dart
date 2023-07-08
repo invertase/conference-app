@@ -26,7 +26,8 @@ class AppTheme {
         primaryColorDark: AppColors.backgroundDark,
         colorScheme: ColorScheme.fromSeed(
           seedColor: AppColors.primaryColorMain,
-          secondary: AppColors.secondaryColorMain,
+          secondary: AppColors.secondaryColorSecondary,
+          secondaryContainer: AppColors.secondaryColorMain,
           primary: AppColors.primaryColorMain,
         ),
         appBarTheme: const AppBarTheme(
@@ -52,7 +53,7 @@ class AppTheme {
           titleMedium: GoogleFonts.poppins(
             color: AppColors.textColorHighEmphacy,
             fontSize: 16,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w700,
           ),
           titleLarge: GoogleFonts.poppins(
             color: AppColors.textColorHighEmphacy,

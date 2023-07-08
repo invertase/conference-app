@@ -1,7 +1,7 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_vikings/core/core.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 Map<String, String> devs = {
@@ -9,12 +9,7 @@ Map<String, String> devs = {
   'Majid Hajian': 'https://twitter.com/mhadaily'
 };
 
-Map<String, String?> contributers = {
-  'Guillaume Bernos': 'https://twitter.com/BeGuillaume',
-  'Ahmad Alabd': null,
-  'Beyza Mersinli': null,
-  'Çağla': null
-};
+Map<String, String?> contributers = {};
 
 class CreditPage extends StatelessWidget {
   const CreditPage({Key? key}) : super(key: key);
@@ -59,7 +54,7 @@ class CreditPage extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyLarge,
                       children: [
                         const TextSpan(
-                          text: 'This project is sponsored by ',
+                          text: 'This app is a product of ',
                         ),
                         TextSpan(
                           text: 'Invertase',
@@ -69,18 +64,18 @@ class CreditPage extends StatelessWidget {
                                   mode: LaunchMode.externalApplication,
                                 ),
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColorLight),
-                        ),
-                        const TextSpan(
-                          text: ' for FlutterVikings.',
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).primaryColorLight,
+                          ),
                         ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 20),
-                  Text('Led by:',
-                      style: Theme.of(context).textTheme.titleLarge),
+                  Text(
+                    'Led by:',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
                   ...devs.keys
                       .map(
                         (e) => GestureDetector(
@@ -102,37 +97,27 @@ class CreditPage extends StatelessWidget {
                       )
                       .toList(),
                   const SizedBox(height: 20),
-                  RichText(
-                    text: TextSpan(
-                      style: Theme.of(context).textTheme.bodyLarge,
-                      children: [
-                        const TextSpan(
-                          text: 'Special thanks to  ',
-                        ),
-                        TextSpan(
-                          text: 'Codemagic ',
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () => launchUrlString(
-                                  'https://codemagic.io',
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Theme.of(context).primaryColorLight),
-                        ),
-                        const TextSpan(
-                          text: ' for sponsoring unlimited build minutes.',
-                        ),
-                      ],
+                  Text(
+                    'Find the project on GitHub:',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      launchUrlString(
+                          'https://github.com/invertase/conference-app');
+                    },
+                    child: Text(
+                      'invertase/conference-app',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge
+                          ?.copyWith(decoration: TextDecoration.underline),
                     ),
                   ),
-                  Text(
-                    '',
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
                   const SizedBox(height: 20),
-                  Text('Contributers: ',
-                      style: Theme.of(context).textTheme.titleLarge),
+                  if (contributers.isNotEmpty)
+                    Text('Contributers: ',
+                        style: Theme.of(context).textTheme.titleLarge),
                   ...contributers.keys
                       .map(
                         (e) => GestureDetector(
