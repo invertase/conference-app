@@ -147,6 +147,24 @@ export const sessionsToFirestore = functions
         session.endsAt = Timestamp.fromDate(endsAt);
       }
 
+      if (session.status === 'Accepted') {
+        session.status = 'upcoming';
+      }
+
+      if (
+        session.endsAt &&
+        (session.endsAt as Timestamp).toDate() < new Date()
+      ) {
+        session.status = 'gone';
+      }
+
+      if (
+        session.startsAt &&
+        (session.startsAt as Timestamp).toDate() > new Date()
+      ) {
+        session.status = 'upcoming';
+      }
+
       batch.set(sessionFirestore.doc(session.id), session);
       functions.logger.info(`🎉 Session added successfully: ${session.title}`);
     }

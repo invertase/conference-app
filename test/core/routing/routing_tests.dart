@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 /// Tests the navigation of the app.
 ///
 /// This test uses the [GoRouter] to navigate through the app.
-///
 Future<void> routerTests(WidgetTester tester) async {
   // Pump the widget tree to process navigation
   await tester.pumpAndSettle();

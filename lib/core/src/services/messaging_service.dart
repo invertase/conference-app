@@ -19,7 +19,6 @@ class MessagingService {
       provisional: false,
       sound: true,
     );
-    print(await _firebaseMessaging?.getToken());
     return _firebaseMessaging?.getToken();
   }
 
