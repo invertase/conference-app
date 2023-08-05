@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:conference_app/features/features.dart';
-import 'package:conference_app/features/floorplan/pages/floorplan_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -112,16 +111,6 @@ class AppRouter {
                 path: RoutePaths.codeOfConduct,
                 name: RouteNames.codeOfConduct,
                 builder: (context, state) => const CodeOfConductPage(),
-              ),
-              GoRoute(
-                path: RoutePaths.credit,
-                name: RouteNames.credit,
-                builder: (context, state) => const CreditPage(),
-              ),
-              GoRoute(
-                path: RoutePaths.floorPlan,
-                name: RouteNames.floorPlan,
-                builder: (context, state) => const FloorplanPage(),
               ),
               GoRoute(
                 path: RoutePaths.aboutUs,

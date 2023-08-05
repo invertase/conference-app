@@ -6,7 +6,6 @@ export 'agenda/widgets/agenda_card.dart';
 export 'app_wrapper/pages/app_wrapper.dart';
 export 'app_wrapper/pages/code_of_conduct_page.dart';
 export 'app_wrapper/widgets/main_bottom_navigation_bar_icon.dart';
-export 'credit/pages/credit_page.dart';
 export 'my_agenda/pages/my_agenda_page.dart';
 export 'notifications/pages/notifications_page.dart';
 export 'onboarding/onboarding_page.dart';

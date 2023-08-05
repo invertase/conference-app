@@ -24,6 +24,7 @@ class RateService {
         .where('sessionId', isEqualTo: sessionId)
         .where('ticketReference', isEqualTo: ticketReference)
         .snapshots();
+
     return snapshot.map((event) => event.docs.length == 1);
   }
 }
