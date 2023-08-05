@@ -11,8 +11,8 @@
 		{
 			"id": "environement",
 			"type": "pickString",
-			"default": "staging",
-			"options": ["staging", "prod"],
+			"default": "dev",
+			"options": ["dev", "prod"],
 			"description": "Environment"
 		}
 	],
@@ -23,7 +23,8 @@
 			"request": "launch",
 			"type": "dart",
 			"args": [
-				"--${input:flutterMode}",
+				"--flavor",
+				"${input:environement}",
 				"--dart-define",
 				"env=${input:environement}"
 			]
