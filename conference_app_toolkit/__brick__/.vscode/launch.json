@@ -23,6 +23,7 @@
 			"request": "launch",
 			"type": "dart",
 			"args": [
+				"--${input:flutterMode}",
 				"--flavor",
 				"${input:environement}",
 				"--dart-define",
