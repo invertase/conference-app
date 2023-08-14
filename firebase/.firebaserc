@@ -1,6 +1,0 @@
-{
-  "projects": {
-    "staging": "fluttercon-berlin",
-    "production": "fluttercon-berlin"
-  }
-}
