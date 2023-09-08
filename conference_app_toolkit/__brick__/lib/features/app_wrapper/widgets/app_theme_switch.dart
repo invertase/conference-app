@@ -1,7 +1,7 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:conference_app/core/core.dart';
 
 class AppThemeSwitch extends ConsumerStatefulWidget {
   const AppThemeSwitch({Key? key}) : super(key: key);
@@ -37,9 +37,8 @@ class _AppThemeSwitchState extends ConsumerState<AppThemeSwitch> {
       onTap: () {
         HapticFeedback.lightImpact();
 
-        ref
-            .watch(themeSwitcher.notifier)
-            .switchTheme(isDarkTheme ? ThemeMode.light : ThemeMode.dark);
+        ref.read(themeSwitcher.notifier).state =
+            isDarkTheme ? ThemeMode.light : ThemeMode.dark;
       },
       child: AnimatedContainer(
         duration: duration,
