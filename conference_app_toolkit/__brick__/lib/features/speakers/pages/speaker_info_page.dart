@@ -192,10 +192,10 @@ class SpeakerSessionCard extends ConsumerWidget {
               ),
               onPressed: () {
                 if (ref.watch(isAddedToMyAgenda(session))) {
-                  ref.watch(myAgenda.notifier).remove(session);
+                  ref.read(myAgenda.notifier).remove(session);
                   context.removedFromAgenda(session.title);
                 } else {
-                  ref.watch(myAgenda.notifier).add(session);
+                  ref.read(myAgenda.notifier).add(session);
                   context.addedToAgenda(session.title);
                 }
               },

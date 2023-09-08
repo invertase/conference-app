@@ -1,8 +1,8 @@
 import 'dart:developer';
 
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:conference_app/core/core.dart';
 
 import '../providers/auth_provider.dart';
 
@@ -29,7 +29,7 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
 
   void reload() async {
     loading = true;
-    await ref.watch(userInstanceProvider)!.reload();
+    await ref.read(userInstanceProvider)!.reload();
     ref.invalidate(userInstanceProvider);
     loading = false;
   }
@@ -37,7 +37,7 @@ class _VerifyEmailState extends ConsumerState<VerifyEmail> {
   void resend() async {
     try {
       loading = true;
-      await ref.watch(userInstanceProvider)!.sendEmailVerification();
+      await ref.read(userInstanceProvider)!.sendEmailVerification();
       ref.invalidate(userInstanceProvider);
     } catch (e) {
       log(e.toString());

@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:conference_app/core/core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:conference_app/core/core.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../providers/auth_provider.dart';
@@ -65,9 +65,7 @@ class _TicketPageState extends ConsumerState<TicketPage>
     });
 
     try {
-      await ref
-          .watch(authService)
-          .signUpWithEmailAndPassword(email!, password!);
+      await ref.read(authService).signUpWithEmailAndPassword(email!, password!);
       setState(() {
         email = null;
         password = null;
@@ -87,7 +85,7 @@ class _TicketPageState extends ConsumerState<TicketPage>
     loading = true;
 
     try {
-      await ref.watch(ticketService).redeemTicket(user, ticket);
+      await ref.read(ticketService).redeemTicket(user, ticket);
       ref.invalidate(ticketProvider);
     } catch (e) {
       setState(() {
@@ -103,7 +101,7 @@ class _TicketPageState extends ConsumerState<TicketPage>
     loading = true;
 
     try {
-      final link = await ref.watch(ticketService).generateBadge(ticket);
+      final link = await ref.read(ticketService).generateBadge(ticket);
       loading = false;
 
       if (link != null) {
@@ -126,7 +124,7 @@ class _TicketPageState extends ConsumerState<TicketPage>
 
     try {
       final tickets =
-          await ref.watch(ticketService).searchTicketByQuery(reference);
+          await ref.read(ticketService).searchTicketByQuery(reference);
 
       if (tickets.isNotEmpty) {
         redeemTicket(tickets.first, user);
@@ -143,7 +141,7 @@ class _TicketPageState extends ConsumerState<TicketPage>
   void signOut() {
     FocusManager.instance.primaryFocus?.unfocus();
 
-    ref.watch(authService).signOut();
+    ref.read(authService).signOut();
   }
 
   bool hasRedeemedTicket(List<Ticket>? tickets) {

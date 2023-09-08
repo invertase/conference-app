@@ -84,7 +84,7 @@ class _MyAgendaState extends ConsumerState<MyAgenda>
                                 speakers: ref.watch(sessionSpeakers(session)),
                                 isFullWidth: true,
                                 onDelete: () {
-                                  ref.watch(myAgenda.notifier).remove(session);
+                                  ref.read(myAgenda.notifier).remove(session);
                                 },
                               ),
                             ),

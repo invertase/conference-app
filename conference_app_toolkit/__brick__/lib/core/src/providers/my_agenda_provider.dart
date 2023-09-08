@@ -27,8 +27,7 @@ class MyAgendaProvider extends BaseStateNotifierProvider<MyAgendaState> {
 
     ref.watch(sessionsProvider).when(
       data: (sessions) {
-        final agendaFromStrorage =
-            ref.watch(localStorage).get('myAgenda') ?? [];
+        final agendaFromStrorage = ref.read(localStorage).get('myAgenda') ?? [];
         final List<Session> myAgenda = agendaFromStrorage
             .map((e) => sessions.singleWhere((s) => s.id == e))
             .toList()
@@ -68,20 +67,20 @@ class MyAgendaProvider extends BaseStateNotifierProvider<MyAgendaState> {
     final my = (ref.read(localStorage).get('myAgenda') as List<String>?) ?? [];
     if (my.contains(session.id)) {
       my.remove(session.id);
-      ref.watch(localStorage).set('myAgenda', my);
+      ref.read(localStorage).set('myAgenda', my);
     }
 
-    ref.watch(messagingService).unsubscribeFromTopic(session.id);
+    ref.read(messagingService).unsubscribeFromTopic(session.id);
     _refreshMyAgenda();
   }
 
   Future<void> add(Session session) async {
     final my = (ref.read(localStorage).get('myAgenda') as List<String>?) ?? [];
     if (!my.contains(session.id)) {
-      ref.watch(localStorage).set('myAgenda', my..add(session.id));
+      ref.read(localStorage).set('myAgenda', my..add(session.id));
     }
 
-    ref.watch(messagingService).subscribeToTopic(session.id);
+    ref.read(messagingService).subscribeToTopic(session.id);
     _refreshMyAgenda();
   }
 }

@@ -1,6 +1,6 @@
+import 'package:conference_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:conference_app/core/core.dart';
 
 class NoSessions extends ConsumerWidget {
   const NoSessions({super.key});
@@ -26,7 +26,7 @@ class NoSessions extends ConsumerWidget {
           AppAdaptiveOutlineButton(
             child: const Text('👈🏻 Let\'s go pick some'),
             onPressed: () {
-              ref.watch(appCurrentTab.notifier).update((state) => state = 0);
+              ref.read(appCurrentTab.notifier).update((state) => state = 0);
             },
           ),
           SizedBox(height: MediaQuery.of(context).padding.bottom),
