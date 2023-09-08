@@ -1,10 +1,10 @@
 import 'dart:developer';
 
+import 'package:conference_app/core/core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:conference_app/core/core.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../providers/auth_provider.dart';
@@ -91,7 +91,7 @@ class _TicketPageState extends ConsumerState<TicketPage>
       ref.invalidate(ticketProvider);
     } catch (e) {
       setState(() {
-        errorMessage = errorMessage = AppStrings.ticketAlreadyRedeemed
+        errorMessage = AppStrings.ticketAlreadyRedeemed
             .replaceAll('{{email}}', AppStrings.appAuthorEmail);
       });
     }
