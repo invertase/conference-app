@@ -23,8 +23,10 @@ class _NotificationsPageState extends ConsumerState<NotificationsPage> {
             .map((i) => core.Notification.fromJson(json.decode(i)))
             .toList()
             .cast<core.Notification>();
-    notifications.sort(
-        (a, b) => b.sentTime?.compareTo(a.sentTime ?? DateTime.now()) ?? 0);
+
+    final now = DateTime.now();
+
+    notifications.sort((a, b) => b.sentTime?.compareTo(a.sentTime ?? now) ?? 0);
   }
 
   @override

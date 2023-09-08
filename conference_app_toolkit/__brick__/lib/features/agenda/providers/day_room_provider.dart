@@ -11,8 +11,10 @@ extension DateOnlyCompare on DateTime {
 final dayRoomProvider = StateProvider<DayRoom>((ref) {
   Day currentDay = eventDays.first;
 
+  final now = DateTime.now();
+
   for (final day in eventDays) {
-    if (day.date.isSameDate(DateTime.now())) {
+    if (day.date.isSameDate(now)) {
       currentDay = day;
     }
   }
