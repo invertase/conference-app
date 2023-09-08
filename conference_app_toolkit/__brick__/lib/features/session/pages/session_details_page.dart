@@ -61,7 +61,7 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
         isLoading = true;
       });
       ref
-          .watch(rateService)
+          .read(rateService)
           .rateSession(
             SessionRate(
               sessionId: widget.session.id,

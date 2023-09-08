@@ -68,7 +68,7 @@ class _NotificationsPageState extends ConsumerState<NotificationsPage> {
                     onPressed: () {
                       setState(() {
                         ref
-                            .watch(core.localStorage)
+                            .read(core.localStorage)
                             .remove(core.LocalStorageKeys.notifications);
 
                         getNotifications();
