@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "development": "fluttercon-berlin",
+    "production": "fluttercon-berlin"
+  }
+}

@@ -1,0 +1,34 @@
+{
+	"version": "0.2.0",
+	"inputs": [
+		{
+			"id": "flutterMode",
+			"type": "pickString",
+			"default": "debug",
+			"options": ["debug", "profile", "release"],
+			"description": "Which Flutter mode to use?"
+		},
+		{
+			"id": "environement",
+			"type": "pickString",
+			"default": "dev",
+			"options": ["dev", "prod"],
+			"description": "Environment"
+		}
+	],
+	"configurations": [
+		{
+			"program": "lib/main_${input:environement}.dart",
+			"name": "Conference App",
+			"request": "launch",
+			"type": "dart",
+			"args": [
+				"--${input:flutterMode}",
+				"--flavor",
+				"${input:environement}",
+				"--dart-define",
+				"env=${input:environement}"
+			]
+		}
+	]
+}
