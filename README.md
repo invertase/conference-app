@@ -7,18 +7,26 @@ The Conference app toolkit is an app template that can be used to create a Flutt
 The toolkit uses Mason to help you generate the app following a template. To get started, install Mason:
 
 ```bash
-pub global activate mason_cli
+dart pub global activate mason_cli
 ```
 
 Additionally, you need the FlutterFire CLI to initialize Firebase for your app:
 
 ```bash
-pub global activate flutterfire_cli
+dart pub global activate flutterfire_cli
+```
+
+Then, create a new directory:
+
+```bash
+mkdir my_conference_app
+cd my_conference_app
 ```
 
 Then, run the following command to add the template:
 
 ```bash
+mason init
 mason add conference_app_toolkit --path ../conference_app_toolkit
 ```
 
