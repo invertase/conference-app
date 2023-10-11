@@ -132,7 +132,7 @@ class _AgendaPageState extends ConsumerState<AgendaPage>
                                     SessionDetails(
                                       session: sessions[i],
                                       speakers: ref
-                                          .watch(sessionSpeakers(sessions[i])),
+                                          .read(sessionSpeakers(sessions[i])),
                                     ),
                                   );
                                 },

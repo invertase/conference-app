@@ -32,7 +32,7 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
   bool isLoading = false;
 
   void onSetReminder() {
-    ref.watch(myAgenda.notifier).add(widget.session);
+    ref.read(myAgenda.notifier).add(widget.session);
     context.addedToAgenda(widget.session.title);
     PrimaryScrollController.of(context).animateTo(
       0,
@@ -61,7 +61,7 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
         isLoading = true;
       });
       ref
-          .watch(rateService)
+          .read(rateService)
           .rateSession(
             SessionRate(
               sessionId: widget.session.id,
@@ -125,7 +125,7 @@ class _SessionDetailsPageState extends ConsumerState<SessionDetailsPage> {
                     child: SessionAddedBanner(
                       show: ref.watch(isAddedToMyAgenda(widget.session)),
                       onDelete: () {
-                        ref.watch(myAgenda.notifier).remove(widget.session);
+                        ref.read(myAgenda.notifier).remove(widget.session);
                         context.removedFromAgenda(widget.session.title);
                       },
                     ),

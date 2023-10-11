@@ -55,7 +55,7 @@ class AgendaAddButton extends ConsumerWidget {
               onPressed: isMyAgenda
                   ? null
                   : () {
-                      ref.watch(myAgenda.notifier).add(session);
+                      ref.read(myAgenda.notifier).add(session);
                       context.addedToAgenda(session.title);
                     },
               noPadding: true,

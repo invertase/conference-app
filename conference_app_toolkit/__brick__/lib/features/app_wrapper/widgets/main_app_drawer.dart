@@ -86,11 +86,11 @@ class MainAppDrawer extends ConsumerWidget {
                   if (item.tabItemId != null) {
                     itemChanged?.call(item);
                     ref
-                        .watch(appCurrentTab.notifier)
+                        .read(appCurrentTab.notifier)
                         .update((state) => state = item.tabItemId!.index);
                   } else if (item.route.isNotEmpty) {
                     GoRouter.of(context).pushNamed(item.route, pathParameters: {
-                      'tab': TabItemId.values[ref.watch(appCurrentTab)].name,
+                      'tab': TabItemId.values[ref.read(appCurrentTab)].name,
                     });
                   }
                 },

@@ -54,7 +54,7 @@ class _AppWrapperState extends ConsumerState<AppWrapper>
       pathParameters: {'tab': appTabs[index].id.name},
     );
 
-    ref.watch(appCurrentTab.notifier).update((state) => state = index);
+    ref.read(appCurrentTab.notifier).update((state) => state = index);
   }
 
   void updateSubTab(index) {
@@ -89,7 +89,7 @@ class _AppWrapperState extends ConsumerState<AppWrapper>
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: (index) {
-          ref.watch(appCurrentTab.notifier).update((state) => state = index);
+          ref.read(appCurrentTab.notifier).update((state) => state = index);
         },
         children: appTabs.map((tab) {
           return tab.view;
