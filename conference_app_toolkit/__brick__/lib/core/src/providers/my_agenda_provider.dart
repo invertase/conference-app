@@ -36,8 +36,10 @@ class MyAgendaProvider extends BaseStateNotifierProvider<MyAgendaState> {
 
         myAgenda.sort((a, b) => a.startsAt.compareTo(b.startsAt));
 
-        myAgenda.removeWhere(
-            (Session session) => session.startsAt.isBefore(DateTime.now()));
+        final now = DateTime.now();
+
+        myAgenda
+            .removeWhere((Session session) => session.startsAt.isBefore(now));
 
         // myAgenda.removeWhere(
         //     (Session session) => session.endsAt.isBefore(DateTime.now()));
